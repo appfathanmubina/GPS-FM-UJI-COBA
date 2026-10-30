@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#800080">
+<title>GPS FM</title>
+<style>
+:root{--ink:#242033;--muted:#777184;--line:#e9e2ec;--bg:#f8f6fa;--primary:#800080;--primary2:#650065;--primary-soft:#f5eaf5;--card:#fff;--green:#0f9f6e;--red:#dc2626;--amber:#b45309}
+*{box-sizing:border-box}.logo-image{overflow:hidden;padding:0;background:#fff;border-color:#f4d77a}.logo-image img{display:block;width:100%;height:100%;object-fit:cover}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.shell{min-height:100vh}.topbar{background:linear-gradient(120deg,#650065,#800080 65%,#a64ca6);color:#fff;padding:18px max(18px,calc((100vw - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:14px;background:#ffffff25;display:grid;place-items:center;font-weight:900;font-size:20px;border:1px solid #ffffff40}.brand h1{font-size:18px;margin:0;letter-spacing:.2px}.brand p{margin:3px 0 0;color:#dbeafe;font-size:12px}.profile{display:flex;align-items:center;gap:10px;font-size:13px}.avatar{width:34px;height:34px;border-radius:50%;background:#fff;color:#800080;display:grid;place-items:center;font-weight:800}.btn{border-radius:11px;padding:10px 14px;font-weight:700;font-size:13px;transition:.15s}.btn-primary{background:var(--primary);color:white;box-shadow:0 3px 9px #80008022}.btn-primary:hover{background:var(--primary2)}.btn-light{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn-ghost{background:#ffffff1f;color:#fff;border:1px solid #ffffff40}.btn-danger{background:#fee2e2;color:#991b1b}.wrap{max-width:1180px;margin:0 auto;padding:24px 18px 50px}.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}.nav button{padding:11px 14px;background:transparent;color:var(--muted);border-radius:11px;font-weight:700;font-size:13px;transition:background .15s,color .15s}.nav button:hover{background:var(--primary-soft);color:var(--primary)}.nav button svg{flex:0 0 auto}.nav button span{display:block}.nav button.active{background:var(--primary-soft);color:var(--primary);box-shadow:inset 3px 0 0 var(--primary)}.page-title{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:8px 0 20px}.page-title h2{margin:0;font-size:25px;letter-spacing:-.6px}.page-title p{margin:7px 0 0;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 5px 20px #1e293b06}.stat-label{font-size:12px;color:var(--muted);font-weight:650}.stat-value{font-size:29px;font-weight:850;letter-spacing:-1px;margin:10px 0 3px}.stat-foot{font-size:12px;color:var(--muted)}.panel{margin-top:16px}.panel h3{margin:0 0 14px;font-size:15px}.row{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.field{display:flex;flex-direction:column;gap:6px;flex:1;min-width:150px}.field label{font-size:12px;font-weight:750;color:#4b556b}.field input,.field select,.field textarea{width:100%;border:1px solid #d9deea;border-radius:10px;padding:11px 12px;background:white;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#818cf8;box-shadow:0 0 0 3px #c7d2fe70}.field textarea{resize:vertical;min-height:72px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;font-size:13px;min-width:560px;background:#fff}th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}th{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#68738b;background:#f8faff}tr:last-child td{border-bottom:0}.pill{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;background:#eef2ff;color:#4338ca}.pill.Hadir{background:#dcfce7;color:#166534}.pill.Izin{background:#fef3c7;color:#92400e}.pill.Sakit{background:#dbeafe;color:#1d4ed8}.pill.Alpa{background:#fee2e2;color:#991b1b}.empty{text-align:center;color:var(--muted);padding:30px 12px}.login{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:#fff}.login-hero{background:linear-gradient(145deg,#650065,#800080 65%,#a64ca6);color:white;padding:8vw;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}.login-hero:after{content:"";position:absolute;width:400px;height:400px;border:1px solid #ffffff35;border-radius:50%;right:-150px;bottom:-170px;box-shadow:0 0 0 50px #ffffff0a,0 0 0 100px #ffffff08}.login-hero h1{font-size:clamp(32px,4vw,56px);line-height:1.08;letter-spacing:-2px;margin:25px 0 15px;max-width:470px}.login-hero p{line-height:1.7;color:#e0e7ff;max-width:400px}.hero-badge{width:max-content;padding:8px 12px;border:1px solid #ffffff55;border-radius:999px;font-size:12px;font-weight:750;background:#ffffff12}.login-side{display:grid;place-items:center;padding:28px}.login-box{width:min(390px,100%)}.login-box h2{font-size:26px;margin:0 0 8px}.login-box>p{color:var(--muted);font-size:13px;margin:0 0 25px}.login-box .field{margin:14px 0}.login-box .btn{width:100%;padding:13px;margin-top:8px}.error{color:#b91c1c;background:#fef2f2;padding:10px 12px;border-radius:9px;font-size:12px;margin:12px 0}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:20;background:#18213b;color:#fff;padding:12px 18px;border-radius:12px;box-shadow:0 10px 30px #0002;font-size:13px;max-width:calc(100vw - 32px)}.spinner{display:inline-block;width:15px;height:15px;border:2px solid #ffffff65;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:7px}@keyframes spin{to{transform:rotate(360deg)}}.checklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:12px}.checkitem{display:flex;align-items:center;gap:9px;padding:10px;border:1px solid var(--line);border-radius:10px;font-size:13px}.checkitem input{accent-color:var(--primary)}.footnote{margin-top:24px;color:#8a94a8;text-align:center;font-size:11px}
+@media(min-width:781px){body.embedded-app .topbar{display:flex}body.embedded-app .nav{top:70px}body.embedded-app .wrap{padding-top:28px}.topbar{position:sticky;top:0;z-index:15;padding:14px max(24px,calc((100vw - 1420px)/2));box-shadow:0 4px 18px #2b123008}.wrap{max-width:none;margin-left:250px;margin-right:0;padding:28px clamp(24px,3vw,48px) 50px}.nav{position:fixed;z-index:14;left:0;top:70px;bottom:0;width:230px;margin:0;padding:24px 14px;background:#fff;border-right:1px solid var(--line);box-shadow:4px 0 18px #2b123006;display:flex;flex-direction:column;flex-wrap:nowrap;gap:7px;overflow-y:auto}.nav:before{content:"NAVIGASI UTAMA";display:block;padding:0 12px 10px;font-size:10px;letter-spacing:1.1px;font-weight:850;color:#9a8da0}.nav button{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:13px 14px;border-radius:10px}.nav button.active{box-shadow:inset 3px 0 0 var(--primary)}.footnote{text-align:left}.login-hero{background:linear-gradient(145deg,#650065,#800080 65%,#a64ca6)}}
+@media(max-width:780px){.login{grid-template-columns:1fr}.login-hero{padding:28px 24px 34px;min-height:245px}.login-hero h1{font-size:34px;margin:17px 0 8px}.login-hero p{margin:0;font-size:13px}.login-side{padding:28px 22px 40px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{padding:14px}.stat-value{font-size:25px}.wrap{padding:18px 12px 35px}.topbar{padding:14px 12px}.brand h1{font-size:16px}.profile .user-name{display:none}.page-title h2{font-size:22px}.panel{padding:14px;margin-top:12px}.nav{flex-wrap:nowrap;overflow:auto;padding-bottom:4px}.nav button{white-space:nowrap}.row>.field{min-width:calc(50% - 8px)}.row .btn{flex:1}.topbar .btn{padding:8px 10px}}
+@media(max-width:380px){.grid{grid-template-columns:1fr 1fr}.row>.field{min-width:100%}}
+@media(max-width:780px){body.embedded-app .topbar{display:flex}body.embedded-app .wrap{padding-top:18px}.nav.nav-five{grid-template-columns:repeat(5,minmax(0,1fr))}.nav.nav-five button{font-size:9px}.topbar{background:linear-gradient(120deg,#650065,#800080 65%,#a64ca6);padding:12px 12px;gap:8px}.logo{border-radius:12px}.profile{gap:6px}.profile .btn{font-size:11px;padding:8px 9px}.wrap{padding:17px 12px calc(100px + env(safe-area-inset-bottom))}.nav{position:fixed;z-index:30;left:0;right:0;bottom:0;top:auto;margin:0;padding:8px 6px calc(8px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -8px 24px #2b123010;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;overflow:visible}.nav:before{display:none}.nav button{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;min-width:0;min-height:54px;padding:7px 2px;border-radius:10px;font-size:10px;line-height:1.15;white-space:normal;text-align:center;color:#817889}.nav button.active{background:var(--primary-soft);color:var(--primary);box-shadow:none}.nav button.active:before{content:"";width:20px;height:3px;border-radius:3px;background:var(--primary);position:absolute;top:0}.nav button{position:relative}.nav button:focus-visible{outline:2px solid var(--primary);outline-offset:1px}.page-title{margin-top:4px}.topbar .brand p{font-size:10px}.profile .user-name{display:none}.profile .avatar{width:30px;height:30px}.topbar .change-pass{display:none}.footnote{padding-bottom:8px;text-align:center}}
+
+
+/* Mobile-first app presentation */
+@media(max-width:780px){
+  html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{min-height:100%;background:#f7f4f9;overscroll-behavior-y:contain}
+  body.embedded-app .topbar{display:flex}
+  .shell{min-height:100dvh}
+  .topbar{position:sticky;top:0;z-index:40;min-height:62px;padding:10px 14px;box-shadow:0 3px 14px #2b123018;gap:8px}
+  .brand{gap:9px;min-width:0}
+  .brand .logo{width:36px;height:36px;min-width:36px;font-size:17px;border-radius:12px}
+  .brand h1{font-size:16px;line-height:1.2}
+  .topbar .brand p{font-size:10px;margin-top:3px;line-height:1.2}
+  .profile{gap:7px;flex-shrink:0}
+  .profile .avatar{width:32px;height:32px}
+  .profile .btn{padding:8px 10px;font-size:11px;border-radius:10px}
+  .wrap,body.embedded-app .wrap{width:100%;max-width:none;margin:0;padding:18px 13px calc(104px + env(safe-area-inset-bottom));}
+  .nav{position:fixed;z-index:50;left:0;right:0;top:auto;bottom:0;width:auto;margin:0;padding:7px 8px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;overflow:visible;background:rgba(255,255,255,.97);border-top:1px solid #e8e0ec;box-shadow:0 -5px 24px #24132b12;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+  .nav.nav-five{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .nav:before{display:none}
+  .nav button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;min-width:0;min-height:56px;margin:0;padding:7px 2px;border:0;border-radius:13px;background:transparent;color:#777184;font-size:10px;font-weight:650;line-height:1.15;white-space:normal;text-align:center}
+  .nav button svg{width:21px;height:21px;flex:0 0 auto}
+  .nav button span{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .nav button.active{background:#f3e7f5;color:#800080;box-shadow:none}
+  .nav button.active:before{content:"";position:absolute;top:3px;left:50%;transform:translateX(-50%);width:18px;height:3px;border-radius:99px;background:#800080}
+  .nav button:focus-visible{outline:2px solid #800080;outline-offset:1px}
+  .page-title{align-items:center;gap:10px;margin:2px 0 16px}
+  .page-title h2{font-size:22px;line-height:1.25;letter-spacing:-.45px}
+  .page-title p{font-size:12px;line-height:1.5;margin-top:5px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .stat,.panel{border-radius:16px;box-shadow:0 3px 12px #24132b08}
+  .stat{padding:14px 13px}
+  .stat-label{font-size:11px;line-height:1.4}
+  .stat-value{font-size:25px;line-height:1.15;margin:8px 0 4px}
+  .stat-foot{font-size:11px;line-height:1.4}
+  .panel{padding:15px;margin-top:12px}
+  .panel h3{font-size:14px;margin-bottom:12px}
+  .field{min-width:0;gap:6px}
+  .field label{font-size:12px}
+  .field input,.field select,.field textarea{min-height:44px;padding:11px 12px;border-radius:11px;font-size:16px}
+  .field textarea{min-height:88px}
+  .row{gap:10px}
+  .row>.field{min-width:calc(50% - 5px)}
+  .btn{min-height:42px;border-radius:11px}
+  .row .btn{flex:1}
+  .table-wrap{border-radius:12px}
+  table{font-size:12px}
+  th,td{padding:11px 12px}
+  .checklist{grid-template-columns:1fr;gap:7px}
+  .checkitem{min-height:44px}
+  .footnote{font-size:10px;line-height:1.5;padding:0 12px 8px;text-align:center}
+  .toast{bottom:calc(88px + env(safe-area-inset-bottom));max-width:calc(100vw - 24px)}
+}
+@media(max-width:380px){
+  .topbar{padding-left:10px;padding-right:10px}
+  .brand h1{font-size:15px}
+  .profile .btn{padding:7px 8px;font-size:10px}
+  .wrap,body.embedded-app .wrap{padding-left:10px;padding-right:10px}
+  .nav{padding-left:5px;padding-right:5px}
+  .nav button{font-size:9px}
+  .row>.field{min-width:100%}
+}
+/* GPS FM visual refinement v1 */
+:root{--ink:#251b2d;--muted:#786d80;--line:#e9dfed;--bg:#f8f5fa;--primary:#800080;--primary2:#620062;--primary-soft:#f5e8f7}
+body{background:linear-gradient(180deg,#faf7fc 0%,#f6f2f8 100%)}
+button,.btn{transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+button:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #d9b5e3;outline-offset:2px}
+.btn-primary{background:linear-gradient(135deg,#800080,#690069);box-shadow:0 7px 16px #80008024}
+.btn-primary:hover{background:linear-gradient(135deg,#700070,#570057);box-shadow:0 9px 20px #80008030;transform:translateY(-1px)}
+.btn-light{border-color:#e6dce9;box-shadow:0 2px 5px #251b2d05}
+.btn-light:hover{border-color:#cfaed6;background:#fbf6fc}
+.topbar{background:linear-gradient(115deg,#570057 0%,#800080 58%,#a64ca6 100%);box-shadow:0 5px 22px #4d124d16}
+.brand p{color:#f1dcf4}
+.logo{box-shadow:inset 0 1px 0 #ffffff24}
+.wrap{padding-top:28px}
+.page-title{margin-bottom:22px}
+.page-title h2{color:#2b1b31;font-size:clamp(23px,2vw,29px);letter-spacing:-.7px}
+.page-title p{font-size:13px;line-height:1.55}
+.stat,.panel{border-color:#ece3ef;box-shadow:0 7px 24px #32143c08}
+.stat{position:relative;overflow:hidden}
+.stat:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:#b66bc1;opacity:.75}
+.stat-value{color:#39213f}
+.panel h3{color:#39213f}
+.field input,.field select,.field textarea{border-color:#ded3e3;background:#fff;transition:border-color .16s ease,box-shadow .16s ease}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#a64ca6;box-shadow:0 0 0 3px #80008018}
+table{min-width:560px}
+th{background:#faf5fb;color:#78647f}
+tr:hover td{background:#fdf9fe}
+.pill{background:#f3e8f5;color:#6d2474}
+.nav button.active{background:#f4e8f6;color:#780078}
+.empty{line-height:1.6}
+.login{position:relative;isolation:isolate;min-height:100vh;min-height:100dvh;grid-template-columns:minmax(0,1.08fr) minmax(420px,.92fr);background:#fbf9fc}
+.login-hero{padding:clamp(36px,6vw,96px);background:radial-gradient(circle at 18% 18%,#ffffff1c 0 2px,transparent 3px),linear-gradient(145deg,#4d004d 0%,#760076 52%,#a64ca6 100%)}
+.login-hero:before{content:"";position:absolute;width:min(42vw,520px);height:min(42vw,520px);border:1px solid #ffffff22;border-radius:50%;top:-190px;left:-190px;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff06;pointer-events:none}
+.login-hero:after{width:440px;height:440px;right:-185px;bottom:-205px;border-color:#ffffff2b;box-shadow:0 0 0 35px #ffffff09,0 0 0 75px #ffffff06,0 0 0 120px #ffffff04}
+.hero-badge{position:relative;z-index:1;padding:9px 14px;letter-spacing:.65px;font-size:10px;background:#ffffff10;border-color:#ffffff4d;backdrop-filter:blur(8px)}
+.login-hero>.logo{position:relative;z-index:1;width:60px;height:60px;margin-top:38px!important;border-radius:19px;font-size:28px;background:#ffffff20;border-color:#ffffff55;box-shadow:0 10px 28px #25002535}
+.login-hero h1{position:relative;z-index:1;font-size:clamp(42px,5vw,68px);line-height:1;letter-spacing:-2.8px;margin:24px 0 17px}
+.login-hero p{position:relative;z-index:1;max-width:410px;color:#f0dff4;font-size:15px;line-height:1.8}
+.login-side{position:relative;z-index:2;padding:clamp(28px,5vw,76px);background:linear-gradient(180deg,#fff 0%,#fcf9fd 100%)}
+.login-box{width:min(400px,100%);padding:clamp(24px,3vw,40px);border:1px solid #eee4f1;border-radius:24px;background:#fff;box-shadow:0 18px 55px #3c17400c}
+.login-box h2{font-size:30px;letter-spacing:-.8px;color:#2d1a33;margin-bottom:9px}
+.login-box>p{font-size:13px;line-height:1.65;margin-bottom:27px}
+.login-box .field{margin:17px 0}
+.login-box .field label{font-size:12px;color:#514159}
+.login-box .field input{min-height:48px;border-radius:12px;padding:13px 14px;background:#fdfbfe}
+.login-box .btn{min-height:48px;margin-top:13px;border-radius:12px;font-size:14px;letter-spacing:.1px}
+.error{border:1px solid #fecaca}
+.checkitem{background:#fff;transition:border-color .15s ease,background .15s ease}
+.checkitem:has(input:checked){border-color:#c58ad0;background:#fcf5fd}
+@media(min-width:781px){
+ .login-side{min-height:100vh}
+ .login-box{padding:38px}
+ .nav{background:#fff}
+}
+@media(max-width:780px){
+ .login{display:flex;flex-direction:column;min-height:100dvh;background:#fbf8fc}
+ .login-hero{min-height:0;padding:28px 24px 38px}
+ .login-hero:before{width:250px;height:250px;top:-150px;left:auto;right:-70px}
+ .login-hero:after{width:240px;height:240px;right:-100px;bottom:-150px;box-shadow:0 0 0 30px #ffffff08,0 0 0 60px #ffffff05}
+ .hero-badge{font-size:9px;letter-spacing:.45px;max-width:100%;white-space:normal}
+ .login-hero>.logo{width:46px;height:46px;margin-top:22px!important;border-radius:15px;font-size:22px}
+ .login-hero h1{font-size:39px;letter-spacing:-1.7px;margin:15px 0 10px}
+ .login-hero p{font-size:12px;line-height:1.65;max-width:360px}
+ .login-side{flex:1;display:block;padding:0 16px 30px;background:transparent}
+ .login-box{position:relative;width:min(440px,100%);margin:-13px auto 0;padding:25px 22px 24px;border-radius:21px;border-color:#eee4f1;box-shadow:0 12px 35px #3c174012}
+ .login-box h2{font-size:25px}
+ .login-box>p{margin-bottom:22px}
+ .login-box .field{margin:14px 0}
+ .login-box .field input{min-height:48px;font-size:16px}
+ .login-box .btn{margin-top:12px}
+ .page-title h2{font-size:22px}
+ .panel{box-shadow:0 4px 16px #32143c07}
+ .stat:before{width:2px}
+ .nav{border-top-color:#e9dfed}
+}
+@media(max-width:380px){
+ .login-hero{padding:24px 18px 34px}
+ .login-side{padding-left:12px;padding-right:12px}
+ .login-box{padding:22px 18px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* GPS FM mobile comfort refinement v2 */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+@media(max-width:780px){
+  #loginScreen.login{width:100%;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden}
+  #loginScreen .login-hero{width:100%;flex:0 0 auto;padding:clamp(22px,6vh,36px) 22px 34px;min-height:0}
+  #loginScreen .hero-badge{align-self:flex-start;max-width:100%;line-height:1.45}
+  #loginScreen .login-hero>.logo{margin-top:22px!important}
+  #loginScreen .login-hero h1{font-size:clamp(38px,10vw,46px);line-height:1.02;margin:15px 0 9px}
+  #loginScreen .login-hero p{max-width:34em;font-size:12px;line-height:1.65;margin:0}
+  #loginScreen .login-side{width:100%;flex:1 0 auto;display:block;padding:0 15px max(26px,env(safe-area-inset-bottom));background:transparent}
+  #loginScreen .login-box{width:100%;max-width:440px;margin:-12px auto 0;padding:24px 21px 22px;border-radius:20px}
+  #loginScreen .login-box h2{font-size:25px;line-height:1.25}
+  #loginScreen .login-box>p{font-size:13px;line-height:1.55;margin-bottom:20px}
+  #loginScreen .login-box .field{margin:14px 0}
+  #loginScreen .login-box .field input{width:100%;min-height:49px;font-size:16px}
+  #loginScreen .login-box .btn{width:100%;min-height:49px;margin-top:13px}
+  #appScreen .table-wrap{max-width:100%;overscroll-behavior-x:contain}
+}
+@media(max-width:380px){
+  #loginScreen .login-hero{padding:22px 17px 30px}
+  #loginScreen .login-side{padding-left:11px;padding-right:11px}
+  #loginScreen .login-box{padding:21px 17px 20px}
+  #loginScreen .login-hero p{font-size:11px}
+}
+
+
+/* Header icon controls: white, accessible, preserve existing action IDs */
+.header-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;min-width:42px;padding:0;color:#fff!important;background:#ffffff16;border:1px solid #ffffff55;border-radius:12px;box-shadow:inset 0 1px 0 #ffffff18}
+.header-icon-btn svg{display:block;width:21px;height:21px;stroke:#fff;flex:0 0 auto}
+.header-icon-btn:hover{background:#ffffff2b;border-color:#ffffff8a}
+.header-icon-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.pill.Tugas{background:#ede9fe;color:#5b21b6}
+/* GPS FM scroll reliability + centered login branding */
+html,body{min-height:100%;height:auto;overflow-x:hidden;overflow-y:auto}
+body{touch-action:auto}
+.logo-image img{object-fit:contain}
+.login-brand{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;margin:24px 0 18px}
+.login-brand>.logo{width:132px;height:132px;min-width:132px;border-radius:28px;margin:0!important;padding:8px;background:#fff;border:1px solid #f0e2f2;box-shadow:0 16px 36px #25002538}
+.login-brand>.logo img{width:100%;height:100%;object-fit:contain}
+.login-brand h1{margin:18px 0 0;font-size:clamp(36px,4.4vw,54px);line-height:1.08;letter-spacing:-1.7px;text-align:center}
+.login-hero>.hero-badge{align-self:center;width:max-content;max-width:100%;text-align:center;font-size:13px;line-height:1.45;letter-spacing:.6px;padding:10px 15px}
+.login-hero>p{position:relative;z-index:2}
+@media(max-width:780px){
+  html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto!important;-webkit-overflow-scrolling:touch}
+  body{overscroll-behavior-y:auto;touch-action:auto}
+  #appScreen.shell{height:auto;min-height:100dvh;overflow:visible}
+  #appScreen .wrap{height:auto;min-height:0;overflow:visible;overscroll-behavior-y:auto;-webkit-overflow-scrolling:touch}
+  #appScreen #page{height:auto;min-height:0;overflow:visible;touch-action:auto}
+  #appScreen .panel{touch-action:auto}
+  #appScreen .table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto!important;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y;position:relative}
+  #appScreen .table-wrap>table{width:max-content;min-width:100%;max-width:none}
+  #appScreen .nav{touch-action:pan-x;overscroll-behavior:contain}
+  #loginScreen.login{height:auto;min-height:100dvh;overflow:visible}
+  #loginScreen .login-hero{align-items:stretch;overflow:hidden}
+  #loginScreen .hero-badge{align-self:center;width:max-content;max-width:100%;font-size:12px;line-height:1.5;padding:10px 14px;text-align:center}
+  #loginScreen .login-brand{margin:20px 0 16px}
+  #loginScreen .login-brand>.logo{width:108px;height:108px;min-width:108px;border-radius:24px;padding:7px}
+  #loginScreen .login-brand h1{font-size:clamp(34px,9vw,43px);margin-top:14px;letter-spacing:-1.3px}
+  #loginScreen .login-hero>p{text-align:center;margin-left:auto;margin-right:auto}
+}
+
+/* GPS FM icon polish: white header actions and purple 3D-style navigation icons */
+.topbar .profile .header-icon-btn{display:inline-flex;align-items:center;justify-content:center;color:#fff!important}
+.topbar .profile .header-icon-btn svg{stroke:#fff;filter:drop-shadow(0 1px 1px #26002655)}
+.nav button svg{color:#800080!important;stroke:#800080;filter:drop-shadow(0 2px 1px #4b004b45) drop-shadow(0 0 3px #80008026);stroke-width:2}
+.nav button:hover svg{filter:drop-shadow(0 3px 1px #4b004b50) drop-shadow(0 0 5px #80008038);transform:translateY(-1px)}
+.nav button.active svg{color:#800080!important;stroke:#800080;filter:drop-shadow(0 2px 1px #4b004b48) drop-shadow(0 0 4px #80008030)}
+.nav button svg{transition:transform .18s ease,filter .18s ease}
+@media(max-width:780px){
+  .topbar .profile .header-icon-btn.change-pass{display:inline-flex!important}
+  .topbar .profile .header-icon-btn{width:36px;height:36px;min-width:36px;padding:0;border-radius:11px}
+  .topbar .profile .header-icon-btn svg{width:19px;height:19px}
+  .nav button svg{width:23px;height:23px;filter:drop-shadow(0 2px 1px #4b004b45) drop-shadow(0 0 4px #8000802b)}
+}
+@media(prefers-reduced-motion:reduce){.nav button svg{transition:none}}
+
+
+/* GPS FM navigation icons: glossy purple 3D treatment + balanced mobile menu */
+.nav .nav-3d-icon{display:block;width:27px;height:27px;flex:0 0 27px;filter:drop-shadow(0 2px 2px #51076520);transition:transform .18s ease,filter .18s ease}
+.nav button:hover .nav-3d-icon{transform:translateY(-1px);filter:drop-shadow(0 3px 3px #51076535)}
+@media(max-width:780px){
+  .nav{grid-template-columns:repeat(var(--nav-count,4),minmax(0,1fr))!important;justify-content:center}
+  .nav button{justify-content:center;text-align:center;align-items:center}
+  .nav .nav-3d-icon{width:28px;height:28px;flex-basis:28px}
+  .topbar .change-pass{display:inline-flex!important}
+}
+
+/* Final contrast and centering refinement for navigation */
+.nav .nav-3d-icon{stroke:#fff!important;filter:drop-shadow(0 2px 2px #51076535) drop-shadow(0 0 2px #80008025)}
+.nav .nav-3d-icon path,.nav .nav-3d-icon rect,.nav .nav-3d-icon circle,.nav .nav-3d-icon line,.nav .nav-3d-icon polyline{stroke:#fff}
+@media(max-width:780px){
+  .nav button{justify-self:center;width:100%;max-width:120px}
+  .nav .nav-3d-icon{filter:drop-shadow(0 2px 2px #51076535)}
+  .nav button.active .nav-3d-icon{filter:drop-shadow(0 2px 2px #51076545) drop-shadow(0 0 3px #80008030)}
+}
+
+
+/* Compact top process notification */
+.gps-process-pop{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;width:min(440px,calc(100vw - 24px));padding:13px 15px;border:1px solid #e6d7ed;border-radius:15px;background:#fff;box-shadow:0 12px 38px #280b3530;color:#35223d;font:inherit}
+.gps-process-head{display:flex;align-items:center;gap:9px;font-weight:750;color:#680078}
+.gps-process-dot{width:10px;height:10px;border-radius:50%;background:#8b35a3;flex:0 0 auto}
+.gps-process-pop[data-state="success"] .gps-process-dot{background:#168653}
+.gps-process-pop[data-state="error"] .gps-process-dot{background:#c52b40}
+.gps-process-message{font-size:13px;line-height:1.45;margin-top:5px;white-space:pre-line;overflow-wrap:anywhere}
+.gps-process-progress{height:4px;margin-top:10px;border-radius:99px;background:#f0e7f4;overflow:hidden}
+.gps-process-progress>span{display:block;width:35%;height:100%;border-radius:99px;background:linear-gradient(90deg,#800080,#c78bdf);animation:gpsProcessMove 1.1s ease-in-out infinite alternate}
+.gps-process-pop[data-state="success"] .gps-process-progress,.gps-process-pop[data-state="error"] .gps-process-progress{display:none}
+@keyframes gpsProcessMove{from{transform:translateX(-15%)}to{transform:translateX(210%)}}
+.gps-modal-backdrop{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:18px;background:#1b102b77;backdrop-filter:blur(4px)}
+.gps-modal{width:min(420px,100%);padding:22px;border-radius:20px;background:#fff;box-shadow:0 24px 70px #18082445;color:#35223d}
+.gps-modal h3{margin:0 0 7px;font-size:20px;color:#690078}
+.gps-modal .field{margin-top:13px}
+.gps-modal-actions{display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap;margin-top:20px}
+.gps-modal .btn{min-height:42px}
+
+
+/* GPS FM: warna menu mobile emas, menu aktif berlatar ungu */
+@media(max-width:780px){
+  .nav button,
+  .nav button:visited{
+    color:#d4a72c !important;
+    background:transparent !important;
+    border:1px solid transparent;
+  }
+  .nav button svg{
+    color:#d4a72c !important;
+    stroke:#d4a72c !important;
+  }
+  .nav button span{color:#d4a72c !important}
+  .nav button:hover{
+    color:#f0c75e !important;
+    background:#80008012 !important;
+  }
+  .nav button:hover svg{color:#f0c75e !important;stroke:#f0c75e !important}
+  .nav button.active,
+  .nav button.active:hover{
+    color:#f4cf62 !important;
+    background:linear-gradient(145deg,#650065 0%,#800080 65%,#922792 100%) !important;
+    border-color:#b77cbd !important;
+    box-shadow:0 4px 12px #80008030,inset 0 1px 0 #ffffff20 !important;
+  }
+  .nav button.active span{color:#f4cf62 !important}
+  .nav button.active svg{color:#f4cf62 !important;stroke:#f4cf62 !important}
+  .nav button.active:before{background:#f4cf62 !important}
+  .nav button:focus-visible{outline:2px solid #d4a72c !important;outline-offset:1px}
+}
+
+
+/* Ikon menu 3D dua warna: emas dan putih. Tidak mengubah latar tombol/menu. */
+.nav .nav-3d-icon{
+  color:#d4a72c!important;
+  stroke:#d4a72c!important;
+  filter:drop-shadow(0 2px 2px #6e4d0b45) drop-shadow(0 0 2px #f6d77850);
+}
+.nav .nav-3d-icon linearGradient[id^="gpsNavGrad-"] stop:first-child{stop-color:#fff4c2!important}
+.nav .nav-3d-icon linearGradient[id^="gpsNavGrad-"] stop:nth-child(2){stop-color:#f2c94c!important}
+.nav .nav-3d-icon linearGradient[id^="gpsNavGrad-"] stop:last-child{stop-color:#a87912!important}
+.nav .nav-3d-icon rect{stroke:#a87912!important}
+.nav .nav-3d-icon g g,
+.nav .nav-3d-icon g g path,
+.nav .nav-3d-icon g g rect,
+.nav .nav-3d-icon g g circle,
+.nav .nav-3d-icon g g line,
+.nav .nav-3d-icon g g polyline{
+  stroke:#fffdf5!important;
+}
+.nav .nav-3d-icon g>path{stroke:none!important}
+.nav .nav-3d-icon g>rect{stroke:#a87912!important}
+@media(max-width:780px){
+  .nav .nav-3d-icon{width:28px;height:28px;flex-basis:28px}
+  .nav button.active .nav-3d-icon{filter:drop-shadow(0 2px 2px #6e4d0b55) drop-shadow(0 0 4px #f6d77865)}
+}
+
+
+/* GPS FM visual refinement: professional purple/lavender surfaces, without changing layout or actions */
+#appScreen{
+  background:
+    radial-gradient(ellipse at 8% 0%,rgba(214,177,224,.18),transparent 34%),
+    linear-gradient(180deg,#f8f4fb 0%,#f3eef8 100%);
+}
+#appScreen .page-title h2{color:#5b1768}
+#appScreen .page-title p{color:#786681}
+#appScreen .panel{
+  background:linear-gradient(145deg,#fff 0%,#fdfaff 100%);
+  border:1px solid #e6d9ed;
+  box-shadow:0 8px 24px rgba(75,24,91,.065),0 1px 2px rgba(75,24,91,.035);
+}
+#appScreen .panel h3{
+  color:#65116f;
+  padding-bottom:9px;
+  border-bottom:1px solid #efe4f3;
+}
+#appScreen .stat{
+  background:linear-gradient(145deg,#fff 0%,#f7effa 100%);
+  border:1px solid #e7d7ed;
+  box-shadow:0 7px 22px rgba(75,24,91,.07);
+}
+#appScreen .stat:nth-child(2){background:linear-gradient(145deg,#fff 0%,#effaf4 100%);border-color:#d6eee0}
+#appScreen .stat:nth-child(3){background:linear-gradient(145deg,#fff 0%,#fff8e8 100%);border-color:#f0e3bf}
+#appScreen .stat:nth-child(4){background:linear-gradient(145deg,#fff 0%,#fff0f0 100%);border-color:#f1dada}
+#appScreen .stat-value{color:#5e176b}
+#appScreen .stat:nth-child(2) .stat-value{color:#147448}
+#appScreen .stat:nth-child(3) .stat-value{color:#9a6708}
+#appScreen .stat:nth-child(4) .stat-value{color:#b42332}
+#appScreen .field label{color:#5d4268}
+#appScreen .field input,#appScreen .field select,#appScreen .field textarea{
+  border-color:#dfd0e7;
+  background:#fff;
+}
+#appScreen .field input:focus,#appScreen .field select:focus,#appScreen .field textarea:focus{
+  border-color:#9c55aa;
+  box-shadow:0 0 0 3px rgba(128,0,128,.12);
+}
+#appScreen .checkitem{background:#fdfaff;border-color:#e7d9ed}
+#appScreen .checkitem:hover{background:#f7eefb;border-color:#d5b8e0}
+#appScreen .table-wrap{
+  border:1px solid #d8c3e2;
+  border-radius:13px;
+  box-shadow:0 4px 14px rgba(75,24,91,.045);
+}
+#appScreen table{background:#fff}
+#appScreen thead th,
+#appScreen table th{
+  background:linear-gradient(120deg,#650065 0%,#800080 62%,#913391 100%) !important;
+  color:#fff !important;
+  font-weight:800;
+  border-bottom:1px solid #5a005a;
+  border-right:1px solid rgba(255,255,255,.13);
+  padding-top:13px;
+  padding-bottom:13px;
+}
+#appScreen thead th:last-child{border-right:0}
+#appScreen tbody tr:nth-child(even) td{background:#f8f1fb}
+#appScreen tbody tr:nth-child(odd) td{background:#fff}
+#appScreen tbody tr:hover td{background:#eee0f4}
+#appScreen tbody td{border-bottom:1px solid #eadfed}
+#appScreen .empty{background:linear-gradient(135deg,#fcf8fe,#f5edf9);border:1px dashed #d9c1e2;border-radius:12px}
+#appScreen .btn-light{background:linear-gradient(180deg,#fff,#faf5fc);border-color:#ddcce5;color:#5f286b}
+#appScreen .btn-light:hover{background:#f3e6f7;border-color:#c8a4d4}
+@media(max-width:780px){
+  #appScreen .panel{border-radius:15px;box-shadow:0 5px 17px rgba(75,24,91,.06)}
+  #appScreen .table-wrap{border-radius:11px}
+  #appScreen thead th,#appScreen table th{padding:11px 12px;font-size:10px}
+}
+
+
+/* Remember Me control */
+#loginForm .remember-row{display:flex;align-items:center;gap:9px;margin:2px 0 16px;color:var(--muted);font-size:13px;cursor:pointer;user-select:none}
+#loginForm .remember-row input{width:17px;height:17px;margin:0;accent-color:#800080;cursor:pointer;flex:0 0 auto}
+#loginForm .password-wrap{position:relative;width:100%}#loginForm .password-wrap>input{padding-right:52px!important}#loginForm .password-toggle{position:absolute;right:7px;top:50%;transform:translateY(-50%);width:38px;height:38px;display:grid;place-items:center;border:0;border-radius:9px;background:transparent;color:#786d80;padding:0;margin:0;cursor:pointer}#loginForm .password-toggle:hover{background:#f5e8f7;color:#800080}#loginForm .password-toggle:focus-visible{outline:2px solid #800080;outline-offset:1px}#loginForm .password-toggle svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* GPS FM logout confirmation modal — matching purple/lavender theme */
+.gps-logout-backdrop{position:fixed;inset:0;z-index:10050;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(34,12,42,.56);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);animation:gpsLogoutFade .18s ease-out}
+.gps-logout-dialog{width:min(100%,410px);overflow:hidden;border:1px solid #e4d3ed;border-radius:22px;background:linear-gradient(145deg,#fff 0%,#fbf6fe 100%);box-shadow:0 24px 80px rgba(30,8,40,.28);animation:gpsLogoutPop .22s ease-out}
+.gps-logout-accent{height:5px;background:linear-gradient(90deg,#650065,#800080 55%,#d7b5e2)}
+.gps-logout-content{padding:27px 26px 22px;text-align:center}
+.gps-logout-icon{width:62px;height:62px;margin:0 auto 15px;display:grid;place-items:center;border-radius:19px;background:linear-gradient(145deg,#f4e8fa,#fff);border:1px solid #e5d1ee;color:#800080;box-shadow:inset 0 1px 0 #fff,0 8px 20px rgba(92,20,110,.10)}
+.gps-logout-icon svg{width:30px;height:30px}
+.gps-logout-dialog h3{margin:0 0 9px;color:#591264;font-size:21px;font-weight:850;letter-spacing:-.3px}
+.gps-logout-dialog p{margin:0;color:#786681;font-size:14px;line-height:1.65}
+.gps-logout-actions{display:flex;gap:10px;padding:0 26px 25px}
+.gps-logout-actions button{flex:1;min-height:44px;border-radius:12px;font-weight:750;font-size:14px;transition:transform .16s ease,box-shadow .16s ease,background .16s ease}
+.gps-logout-cancel{background:#f3eaf7;color:#63216f;border:1px solid #e2cfe9}
+.gps-logout-cancel:hover{background:#ead9f1;transform:translateY(-1px)}
+.gps-logout-confirm{background:linear-gradient(135deg,#650065,#800080 65%,#963b9b);color:#fff;box-shadow:0 5px 13px rgba(101,0,101,.2)}
+.gps-logout-confirm:hover{box-shadow:0 8px 18px rgba(101,0,101,.28);transform:translateY(-1px)}
+.gps-logout-actions button:focus-visible{outline:3px solid #cda4dc;outline-offset:3px}
+@keyframes gpsLogoutFade{from{opacity:0}to{opacity:1}}
+@keyframes gpsLogoutPop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:480px){.gps-logout-content{padding:24px 21px 19px}.gps-logout-actions{padding:0 21px 21px}.gps-logout-dialog h3{font-size:19px}}
+
+/* GPS FM flat navigation icons: purple by default, gold when active */
+.nav .nav-flat-icon{display:block;width:26px;height:26px;flex:0 0 26px;color:#800080;stroke:currentColor;fill:none;filter:none!important;transition:color .16s ease,transform .16s ease}
+.nav button{color:#800080}
+.nav button span{color:inherit}
+.nav button .nav-flat-icon{color:#800080}
+.nav button:hover .nav-flat-icon{color:#6b176f;transform:translateY(-1px)}
+.nav button.active,.nav button.active:hover{color:#d4a72c}
+.nav button.active .nav-flat-icon{color:#d4a72c;filter:none!important}
+.nav button.active span{color:#d4a72c}
+.nav button .nav-3d-icon{display:none!important}
+@media(max-width:780px){
+  .nav .nav-flat-icon{width:25px;height:25px;flex-basis:25px}
+  .nav button,.nav button:visited{color:#800080!important;background:transparent!important}
+  .nav button span{color:inherit!important}
+  .nav button .nav-flat-icon{color:#800080!important}
+  .nav button.active,.nav button.active:hover{color:#d4a72c!important;background:linear-gradient(145deg,#650065 0%,#800080 65%,#922792 100%)!important}
+  .nav button.active span,.nav button.active .nav-flat-icon{color:#f4cf62!important}
+}
+@media(prefers-reduced-motion:reduce){.nav .nav-flat-icon{transition:none}}
+
+.skeleton-line{height:12px;width:70%;margin-top:12px;border-radius:8px;background:linear-gradient(90deg,#eee8f3 25%,#f8f5fa 50%,#eee8f3 75%);background-size:200% 100%;animation:gpsfmShimmer 1.4s ease-in-out infinite}@keyframes gpsfmShimmer{to{background-position:-200% 0}}</style>
+</head>
+<body>
+<div id="loginScreen" class="login">
+ <section class="login-hero"><div class="login-brand"><div class="logo logo-image"><img src="https://raw.githubusercontent.com/appfathanmubina/GPS-FM/main/pwa/icon.png" alt="Logo GPS FM"></div><h1>GPS FM</h1></div><p>Sistem Absensi Guru Pembina Santri. Catat kehadiran kegiatan, pantau rekap, dan siapkan laporan bulanan dalam satu aplikasi.</p></section>
+ <section class="login-side"><form class="login-box" id="loginForm"><h2>Selamat datang</h2><p>Masuk menggunakan akun GPS FM Anda.</p><div id="loginError" class="error hidden"></div><div class="field"><label for="username">Username</label><input id="username" autocomplete="username" required maxlength="50" placeholder="Masukkan username"></div><div class="field"><label for="password">Password</label><div class="password-wrap"><input id="password" type="password" autocomplete="current-password" required maxlength="200" placeholder="Masukkan password"><button class="password-toggle" id="toggleLoginPassword" type="button" aria-label="Tampilkan password" title="Tampilkan password" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg></button></div></div><label class="remember-row" for="rememberMe"><input id="rememberMe" type="checkbox"><span>Ingat saya (Remember Me)</span></label><button class="btn btn-primary" id="loginButton" type="submit">Masuk ke GPS FM</button></form></section>
+</div>
+<div id="appScreen" class="shell hidden">
+ <header class="topbar"><div class="brand"><div class="logo logo-image"><img src="https://raw.githubusercontent.com/appfathanmubina/GPS-FM/main/pwa/icon.png" alt="Logo GPS FM"></div><div><h1>GPS FM</h1><p>Absensi Guru Pembina Santri</p></div></div><div class="profile"><div class="avatar" id="avatar">G</div><div class="user-name"><b id="profileName">Guru GPS</b><div class="small" id="profileRole" style="color:#dbeafe">Guru GPS</div></div><button class="btn btn-ghost header-icon-btn change-pass" id="changePassBtn" type="button" title="Ganti Password" aria-label="Ganti Password"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5zM12 14v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="btn btn-ghost header-icon-btn" id="logoutBtn" type="button" title="Keluar" aria-label="Keluar"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4H5v16h5M14 8l4 4-4 4M8 12h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></header>
+ <main class="wrap"><nav class="nav" id="nav"></nav><section id="page"></section><div class="footnote">GPS FM · Sistem Absensi Guru Pembina Santri · Pesantren Fathan Mubina</div></main>
+</div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script>
+(function(){
+'use strict';
+// Saat halaman dibuka di dalam shell PWA, sembunyikan header internal agar tidak bertumpuk.
+try { if (window.self !== window.top) document.body.classList.add('embedded-app'); } catch (e) { document.body.classList.add('embedded-app'); }
+const $=id=>document.getElementById(id);
+let token='',me=null,bootstrap=null,currentPage='dashboard',users=[],activities=[],report=null;
+const gpsfmPageDomCache=Object.create(null);
+const gpsfmMutatingApi=/^(apiSave|apiAssign|apiSet|apiChange|apiDelete|apiLock|apiUnlock|apiClose|apiReopen|apiImport|apiReset)/;
+function gpsfmInvalidatePageCache(){Object.keys(gpsfmPageDomCache).forEach(k=>delete gpsfmPageDomCache[k]);}
+function call(name,...args){return new Promise((resolve,reject)=>{if(!window.google||!google.script||!google.script.run){reject(new Error('Aplikasi harus dibuka melalui URL Web App Google Apps Script.'));return;}google.script.run.withSuccessHandler(result=>{if(gpsfmMutatingApi.test(name))gpsfmInvalidatePageCache();resolve(result);}).withFailureHandler(e=>reject(new Error((e&&e.message)||String(e)||'Terjadi kesalahan.')))[name](...args);});}
+function gpsfmStorageGet(storage,key){try{return storage.getItem(key)||'';}catch(e){return '';}}
+function gpsfmStorageSet(storage,key,value){try{storage.setItem(key,value);return true;}catch(e){return false;}}
+function gpsfmStorageRemove(storage,key){try{storage.removeItem(key);}catch(e){}}
+function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function toast(msg){$('toast').textContent=msg;$('toast').classList.remove('hidden');setTimeout(()=>$('toast').classList.add('hidden'),3200);}
+let gpsProcessTimer=null;
+function processNotice(title,message,state){
+ let el=$('gpsProcessPop');
+ if(!el){el=document.createElement('div');el.id='gpsProcessPop';el.className='gps-process-pop';el.setAttribute('role','status');el.setAttribute('aria-live','polite');document.body.appendChild(el);}
+ el.dataset.state=state||'working';
+ el.innerHTML='<div class="gps-process-head"><span class="gps-process-dot"></span><span>'+esc(title)+'</span></div><div class="gps-process-message">'+esc(message)+'</div><div class="gps-process-progress"><span></span></div>';
+ if(gpsProcessTimer)clearTimeout(gpsProcessTimer);
+ if(state==='success'||state==='error')gpsProcessTimer=setTimeout(()=>{if(el.isConnected)el.remove();},9000);
+}
+function closeProcessNotice(){if(gpsProcessTimer)clearTimeout(gpsProcessTimer);gpsProcessTimer=null;const el=$('gpsProcessPop');if(el)el.remove();}
+function gpsfmPromptModal(title,message,placeholder,initialValue,inputType){
+ return new Promise(resolve=>{
+  const old=$('gpsPromptModal');if(old)old.remove();
+  const wrap=document.createElement('div');wrap.id='gpsPromptModal';wrap.className='gps-modal-backdrop';
+  wrap.innerHTML='<section class="gps-modal" role="dialog" aria-modal="true" aria-labelledby="gpsPromptTitle"><h3 id="gpsPromptTitle">'+esc(title)+'</h3><p class="muted small">'+esc(message)+'</p><form id="gpsPromptForm"><div class="field"><label for="gpsPromptValue">'+esc(placeholder)+'</label><input id="gpsPromptValue" type="'+(inputType==='password'?'password':'text')+'" maxlength="300" required autocomplete="'+(inputType==='password'?'new-password':'off')+'" /></div><div id="gpsPromptError" class="error hidden" role="alert"></div><div class="gps-modal-actions"><button class="btn btn-light" id="gpsPromptCancel" type="button">Batal</button><button class="btn btn-primary" id="gpsPromptSubmit" type="submit">Lanjutkan</button></div></form></section>';
+  document.body.appendChild(wrap);const input=$('gpsPromptValue');input.value=initialValue||'';
+  let settled=false;const finish=value=>{if(settled)return;settled=true;document.removeEventListener('keydown',onKey);wrap.remove();resolve(value);};
+  const onKey=e=>{if(e.key==='Escape')finish(null);};document.addEventListener('keydown',onKey);
+  $('gpsPromptCancel').onclick=()=>finish(null);wrap.addEventListener('click',e=>{if(e.target===wrap)finish(null);});
+  $('gpsPromptForm').onsubmit=e=>{e.preventDefault();const value=input.value.trim();if(!value){$('gpsPromptError').textContent='Bagian ini wajib diisi.';$('gpsPromptError').classList.remove('hidden');input.focus();return;}finish(value);};
+  input.focus();
+ });
+}
+function openChangePasswordModal(forceRequired){
+ const oldModal=$('gpsPasswordModal');if(oldModal)oldModal.remove();
+ const wrap=document.createElement('div');wrap.id='gpsPasswordModal';wrap.className='gps-modal-backdrop';
+ wrap.innerHTML='<section class="gps-modal" role="dialog" aria-modal="true" aria-labelledby="gpsPasswordTitle"><h3 id="gpsPasswordTitle">'+(forceRequired?'Wajib Ganti Password':'Ganti Password')+'</h3><p class="muted small">'+(forceRequired?'Demi keamanan, Anda harus mengganti password awal sebelum menggunakan fitur aplikasi.':'Masukkan password saat ini, lalu tentukan password baru minimal 6 karakter.')+'</p><form id="gpsPasswordForm"><div class="field"><label for="gpsOldPassword">Password saat ini</label><input id="gpsOldPassword" type="password" autocomplete="current-password" required maxlength="200"></div><div class="field"><label for="gpsNewPassword">Password baru</label><input id="gpsNewPassword" type="password" autocomplete="new-password" minlength="6" required maxlength="200"></div><div class="field"><label for="gpsConfirmPassword">Ulangi password baru</label><input id="gpsConfirmPassword" type="password" autocomplete="new-password" minlength="6" required maxlength="200"></div><div id="gpsPasswordError" class="error hidden" role="alert"></div><div class="gps-modal-actions">'+(forceRequired?'':'<button class="btn btn-light" id="gpsCancelPassword" type="button">Batal</button>')+'<button class="btn btn-primary" id="gpsSavePassword" type="submit">Simpan Password</button></div></form></section>';
+ document.body.appendChild(wrap);
+ if(!forceRequired){$('gpsCancelPassword').onclick=()=>wrap.remove();wrap.addEventListener('click',e=>{if(e.target===wrap)wrap.remove();});}
+ $('gpsPasswordForm').onsubmit=async e=>{
+  e.preventDefault();const old=$('gpsOldPassword').value,next=$('gpsNewPassword').value,confirm=$('gpsConfirmPassword').value,err=$('gpsPasswordError'),btn=$('gpsSavePassword');
+  err.classList.add('hidden');
+  if(next.length<6){err.textContent='Password baru minimal 6 karakter.';err.classList.remove('hidden');return;}
+  if(next!==confirm){err.textContent='Konfirmasi password baru tidak sama.';err.classList.remove('hidden');return;}
+  busy(btn,true,'Menyimpan password...');
+  processNotice('Memperbarui password','Permintaan sedang diproses dengan aman…','working');
+  try{await call('apiChangeOwnPassword',token,old,next);wrap.remove();me.mustChangePassword=false;processNotice('Password berhasil diubah','Password baru sudah tersimpan.','success');if(forceRequired)await renderPage('dashboard');}
+  catch(e){err.textContent=e.message||'Password belum berhasil diubah.';err.classList.remove('hidden');processNotice('Ganti password gagal',err.textContent,'error');}
+  finally{busy(btn,false);}
+ };
+ $('gpsOldPassword').focus();
+}
+function busy(btn,on,text){if(!btn)return;btn.disabled=on;if(on){btn.dataset.old=btn.innerHTML;btn.innerHTML='<span class="spinner"></span>'+esc(text||'Memproses...');}else if(btn.dataset.old){btn.innerHTML=btn.dataset.old;delete btn.dataset.old;}}
+function errorBox(id,msg){$(id).textContent=msg;$(id).classList.remove('hidden');}
+function hideLogin(){ $('loginScreen').classList.add('hidden');$('appScreen').classList.remove('hidden'); }
+function showLogin(){ $('appScreen').classList.add('hidden');$('loginScreen').classList.remove('hidden'); }
+function dateDefault(){return bootstrap&&bootstrap.serverDate||new Date().toLocaleDateString('en-CA');}
+$('toggleLoginPassword').addEventListener('click',()=>{const input=$('password'),button=$('toggleLoginPassword'),show=input.type==='password';input.type=show?'text':'password';button.setAttribute('aria-pressed',String(show));button.setAttribute('aria-label',show?'Sembunyikan password':'Tampilkan password');button.title=show?'Sembunyikan password':'Tampilkan password';button.innerHTML=show?'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a16 16 0 0 1-3.1 3.8M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10 10 0 0 0 4-.8"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg>';});
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();const btn=$('loginButton');$('loginError').classList.add('hidden');busy(btn,true,'Memeriksa akun...');try{const r=await call('apiLogin',$('username').value,$('password').value);token=r.token;me=r.user;gpsfmStorageSet(sessionStorage,'gpsfm_token',token);if($('rememberMe').checked){gpsfmStorageSet(localStorage,'gpsfm_token',token);gpsfmStorageSet(localStorage,'gpsfm_remember','1');}else{gpsfmStorageRemove(localStorage,'gpsfm_token');gpsfmStorageRemove(localStorage,'gpsfm_remember');}await startApp();$('password').value='';}catch(err){errorBox('loginError',err.message);}finally{busy(btn,false);}});
+async function startApp(){bootstrap=await call('apiGetBootstrap',token);me=bootstrap.user;$('profileName').textContent=me.fullName;$('profileRole').textContent=me.role==='superadmin'?'Superadmin':me.role==='supervisor'?'Supervisor GPS':'Guru GPS';$('avatar').textContent=(me.fullName||'G').trim().charAt(0).toUpperCase();renderNav();if(me.mustChangePassword){hideLogin();openChangePasswordModal(true);return;}await renderPage('dashboard');hideLogin();}
+$('logoutBtn').addEventListener('click',openLogoutConfirmation);
+function openLogoutConfirmation(){
+ if($('gpsLogoutModal'))return;
+ const wrap=document.createElement('div');wrap.id='gpsLogoutModal';wrap.className='gps-logout-backdrop';
+ wrap.innerHTML='<section class="gps-logout-dialog" role="alertdialog" aria-modal="true" aria-labelledby="gpsLogoutTitle" aria-describedby="gpsLogoutMessage"><div class="gps-logout-accent"></div><div class="gps-logout-content"><div class="gps-logout-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4H5v16h5"/><path d="M14 8l4 4-4 4M8 12h10"/></svg></div><h3 id="gpsLogoutTitle">Konfirmasi Keluar</h3><p id="gpsLogoutMessage">Apakah Anda yakin ingin keluar dari GPS FM? Pastikan pekerjaan Anda sudah tersimpan.</p></div><div class="gps-logout-actions"><button type="button" class="gps-logout-cancel" id="gpsLogoutCancel">Batal</button><button type="button" class="gps-logout-confirm" id="gpsLogoutConfirm">Ya, Keluar</button></div></section>';
+ document.body.appendChild(wrap);
+ const cancel=$('gpsLogoutCancel'),confirm=$('gpsLogoutConfirm');
+ const close=()=>{wrap.remove();$('logoutBtn').focus();};
+ cancel.addEventListener('click',()=>{close();document.removeEventListener('keydown',onKey);});
+ wrap.addEventListener('click',e=>{if(e.target===wrap){close();document.removeEventListener('keydown',onKey);}});
+ const onKey=e=>{if(e.key==='Escape'&&wrap.isConnected){close();document.removeEventListener('keydown',onKey);}};
+ document.addEventListener('keydown',onKey);
+ confirm.addEventListener('click',async()=>{
+  confirm.disabled=true;cancel.disabled=true;confirm.textContent='Sedang keluar…';
+  try{await call('apiLogout',token);}catch(e){}
+  token='';me=null;gpsfmStorageRemove(sessionStorage,'gpsfm_token');gpsfmStorageRemove(localStorage,'gpsfm_token');gpsfmStorageRemove(localStorage,'gpsfm_remember');
+  $('rememberMe').checked=false;wrap.remove();document.removeEventListener('keydown',onKey);showLogin();
+  toast('Anda berhasil keluar dari GPS FM.');
+ });
+ cancel.focus();
+}
+$('changePassBtn').addEventListener('click',openChangePasswordModal);
+function navIcon(id){const paths={dashboard:'<rect x="4" y="4" width="6" height="6" rx="1.2"/><rect x="14" y="4" width="6" height="6" rx="1.2"/><rect x="4" y="14" width="6" height="6" rx="1.2"/><rect x="14" y="14" width="6" height="6" rx="1.2"/>',attendance:'<rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M8 3.5v4M16 3.5v4M4 10h16M8 14l2.2 2.2L16 12"/>',report:'<path d="M5 4v16h15"/><path d="m8 15 3.5-4 3 2 4.5-6"/>',activityReport:'<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9h17M8 4.5v15M13 12h4M13 15.5h4"/>',activities:'<path d="M8 4.5h6.8L18 7.7v11.8H6V4.5z"/><path d="M14.5 4.8v3.4h3.2M9 12h6.5M9 15.5h6.5"/>',users:'<circle cx="9" cy="8" r="3.2"/><path d="M3.8 19v-1.3a5.2 5.2 0 0 1 10.4 0V19m2.1-12a3.2 3.2 0 0 1 0 6.2m1.1 2.8a4.4 4.4 0 0 1 2.8 4"/>'};return '<svg class="nav-flat-icon" aria-hidden="true" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+(paths[id]||paths.dashboard)+'</svg>';} function renderNav(){const nav=$('nav');const isSuperadmin=me.role==='superadmin';const isSupervisor=me.role==='supervisor';const isPJ=!!(bootstrap&&Array.isArray(bootstrap.activities)&&bootstrap.activities.length);const items=[['dashboard','Dashboard']];if(!isSupervisor&&(isSuperadmin||isPJ))items.push(['attendance','Input Absensi']);items.push(['report',isSupervisor?'Rekapan':'Evaluasi Diri']);if(isSupervisor||isSuperadmin||isPJ)items.push(['activityReport','Rekapan Kegiatan']);if(isSuperadmin)items.push(['activities','Kegiatan & PJ'],['users','Akun Guru']);nav.classList.toggle('nav-five',isSuperadmin);nav.style.setProperty('--nav-count',String(items.length));nav.innerHTML=items.map(x=>'<button data-page="'+x[0]+'" class="'+(currentPage===x[0]?'active':'')+'">'+navIcon(x[0])+'<span>'+x[1]+'</span></button>').join('');nav.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>renderPage(b.dataset.page)));}
+async function renderPage(page){
+ const root=$('page'),previous=currentPage;
+ if(previous&&previous!==page&&root.childNodes.length&&!root.classList.contains('page-loading-state')&&!root.querySelector('.page-loading-state')){
+  const saved=document.createElement('div');
+  while(root.firstChild)saved.appendChild(root.firstChild);
+  gpsfmPageDomCache[previous]=saved;
+ }
+ currentPage=page;renderNav();
+ if(gpsfmPageDomCache[page]&&gpsfmPageDomCache[page].childNodes.length){
+  root.replaceChildren();
+  while(gpsfmPageDomCache[page].firstChild)root.appendChild(gpsfmPageDomCache[page].firstChild);
+  return;
+ }
+ const pageNames={dashboard:'Dashboard',attendance:'Input Absensi',report:'Evaluasi Diri',activities:'Kegiatan & PJ',activityReport:'Rekapan',users:'Akun Guru'};
+ const targetPages=['dashboard','attendance','report','activities'];
+ const shouldNotify=targetPages.includes(page);
+ root.classList.add('page-loading-state');
+ if(shouldNotify)processNotice('Memuat '+(pageNames[page]||'halaman'),'Halaman ditampilkan terlebih dahulu. Data sedang diambil di latar belakang…','working');
+ root.replaceChildren();
+ try{
+  if(page==='dashboard')await dashboard(root);
+  else if(page==='attendance')await attendancePage(root);
+  else if(page==='report')await reportPage(root);
+  else if(page==='activityReport')await activityReportPage(root);
+  else if(page==='activities')await activitiesPage(root);
+  else if(page==='users')await usersPage(root);
+  else throw new Error('Halaman tidak dikenal.');
+  if(currentPage!==page)return;
+  root.classList.remove('page-loading-state');
+  if(shouldNotify)closeProcessNotice();
+ }catch(e){
+  if(currentPage!==page)return;
+  root.classList.remove('page-loading-state');
+  if(shouldNotify)processNotice('Data belum berhasil dimuat',e.message||'Terjadi kesalahan saat mengambil data.','error');
+  root.insertAdjacentHTML('beforeend','<div class="panel"><h3>Belum dapat memuat data</h3><p class="muted">'+esc(e.message||'Terjadi kesalahan.')+'</p><button class="btn btn-primary" id="retry">Coba lagi</button></div>');
+  const retry=$('retry');if(retry)retry.onclick=()=>renderPage(page);
+ }
+}
+function title(h,p,action){return '<div class="page-title"><div><h2>'+h+'</h2><p>'+p+'</p></div>'+(action||'')+'</div>';}
+async function supervisorDashboard(root){
+ root.innerHTML=title('Dashboard Supervisor','Ringkasan seluruh kegiatan, penanggung jawab, dan catatan absensi bulan berjalan.')+
+ '<div class="grid" id="supervisorStats"><div class="stat"><div class="stat-label">Kegiatan aktif</div><div class="stat-value">…</div></div><div class="stat"><div class="stat-label">PJ aktif</div><div class="stat-value">…</div></div><div class="stat"><div class="stat-label">Catatan absensi bulan ini</div><div class="stat-value">…</div></div><div class="stat"><div class="stat-label">Kelengkapan jadwal</div><div class="stat-value">…</div></div></div><div class="panel"><h3>Monitoring kegiatan dan PJ</h3><p class="muted small" id="supervisorMonth"></p><div id="supervisorActivityTable" class="empty">Memuat ringkasan seluruh kegiatan…</div></div><div class="panel"><h3>Rekap absensi</h3><p class="muted small">Laporan hanya-baca seluruh guru dan seluruh kegiatan.</p><button class="btn btn-primary" id="supervisorOpenReport">Buka Rekapan Absensi</button></div>';
+ $('supervisorOpenReport').onclick=()=>renderPage('report');
+ try{
+  const d=await call('apiGetSupervisorDashboard',token);
+  if(currentPage!=='dashboard'||!root.isConnected)return;
+  $('supervisorStats').innerHTML=[['Kegiatan aktif',d.totalActivities,'Seluruh kegiatan aktif'],['PJ aktif',d.totalPJ,'Guru yang menjadi PJ'],['Catatan absensi bulan ini',d.totalMonthlyRecords,'Semua kegiatan'],['Kelengkapan jadwal',d.completionPercent+'%',d.totalCompletedOccurrences+' dari '+d.totalDueOccurrences+' jadwal jatuh tempo terisi']].map(x=>'<div class="stat"><div class="stat-label">'+x[0]+'</div><div class="stat-value">'+x[1]+'</div><div class="stat-foot">'+x[2]+'</div></div>').join('');
+  $('supervisorMonth').textContent='Periode: '+d.month+' · Kelengkapan dihitung dari jadwal yang sudah jatuh tempo, tidak termasuk kegiatan yang ditandai libur. Satu catatan absensi pada tanggal kegiatan menandakan jadwal terisi.';
+  $('supervisorActivityTable').innerHTML=d.activities.length?'<div class="table-wrap"><table><thead><tr><th>Kegiatan</th><th>Jadwal</th><th>PJ</th><th>Guru Terlibat</th><th>Catatan Bulan Ini</th><th>Jadwal Terisi</th><th>Belum Terisi</th><th>Kelengkapan</th></tr></thead><tbody>'+d.activities.map(a=>'<tr><td><b>'+esc(a.name)+'</b></td><td>'+esc(a.schedule||'—')+'</td><td>'+esc(a.pjs.join(', ')||'Belum ditetapkan')+'</td><td>'+a.rosterCount+'</td><td>'+a.monthlyRecords+'</td><td>'+a.completedOccurrences+'/'+a.dueOccurrences+'</td><td>'+a.missingOccurrences+'</td><td>'+a.completionPercent+'%</td></tr>').join('')+'</tbody></table></div>':'<div class="empty">Belum ada kegiatan aktif.</div>';
+ }catch(e){$('supervisorActivityTable').innerHTML='<div class="empty">Ringkasan gagal dimuat: '+esc(e.message||'Terjadi kesalahan.')+' <button id="retrySupervisor" class="btn btn-light">Coba lagi</button></div>';const b=$('retrySupervisor');if(b)b.onclick=()=>renderPage('dashboard');}
+}
+async function dashboard(root){
+ if(me.role==='supervisor') return supervisorDashboard(root);
+ const canViewTargets=me.role==='superadmin'||!!(bootstrap&&Array.isArray(bootstrap.activities)&&bootstrap.activities.length);
+ root.innerHTML=title('Dashboard','Pantau catatan kehadiran dan target absensi kegiatan mingguan.')+'<div class="grid" id="dashboardStats"><div class="stat"><div class="stat-label">Total catatan</div><div class="stat-value skeleton-line">&nbsp;</div><div class="stat-foot">Memperbarui data</div></div><div class="stat"><div class="stat-label">Hadir</div><div class="stat-value skeleton-line">&nbsp;</div><div class="stat-foot">Memperbarui data</div></div><div class="stat"><div class="stat-label">Sakit & Izin Pribadi</div><div class="stat-value skeleton-line">&nbsp;</div><div class="stat-foot">Memperbarui data</div></div><div class="stat"><div class="stat-label">Alfa</div><div class="stat-value skeleton-line">&nbsp;</div><div class="stat-foot">Memperbarui data</div></div></div>'+(canViewTargets?'<div class="panel" id="attendanceTargetsPanel"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><h3 style="margin:0">Target Absensi</h3><button class="btn btn-primary" id="reloadAttendanceTargets" type="button">↻ Reload Target Absensi</button></div><p class="muted small">Target dimuat hanya saat tombol diklik. Pertemuan terlewat dihitung sesuai jadwal; status absensi apa pun yang tersimpan dianggap sudah masuk.</p><div class="empty" id="attendanceTargetsState">Target absensi belum dimuat.</div></div>':'');
+ root.insertAdjacentHTML('beforeend','<div class="panel"><h3>Akses cepat</h3><button class="btn btn-primary" id="quickAttendance">Buka Input Absensi</button> <button class="btn btn-light" id="quickReport">Lihat Evaluasi Diri</button></div>'+
+ '<div class="panel"><h3>Aktivitas yang dapat dikelola</h3>'+(bootstrap.activities.length?'<div class="table-wrap"><table><thead><tr><th>Kegiatan</th><th>Jadwal</th><th>Akses</th></tr></thead><tbody>'+bootstrap.activities.map(a=>'<tr><td><b>'+esc(a.name)+'</b><div class="small muted">'+esc(a.description)+'</div></td><td>'+esc(a.schedule||'—')+'</td><td><span class="pill">'+(a.isPJ?'PJ kegiatan':'Superadmin')+'</span></td></tr>').join('')+'</tbody></table></div>':'<div class="empty">Belum ada kegiatan yang ditugaskan ke akun ini.</div>')+'</div>');
+ $('quickAttendance').onclick=()=>{window.gpsfmPendingAttendance=null;renderPage('attendance');};
+ $('quickReport').onclick=()=>renderPage('report');
+ // Statistik dimuat terpisah supaya komponen Dashboard yang datanya sudah tersedia dapat langsung digunakan.
+ (async()=>{
+  try{
+   const r=await call('apiGetMonthlyReport',token,new Date().getFullYear(),new Date().getMonth()+1);
+   if(currentPage!=='dashboard'||!root.isConnected)return;
+   const s=r.summary;
+   $('dashboardStats').innerHTML=[['Total catatan',Object.values(s).reduce((a,b)=>a+b,0),'Semua status'],['Hadir',s.Hadir||0,'Kehadiran tercatat'],['Sakit & Izin Pribadi',(s['A. Sakit']||0)+(s['C. Izin Pribadi']||0),'Ketidakhadiran berizin'],['Alfa',s['D. Alfa']||0,'Tidak hadir tanpa keterangan']].map(x=>'<div class="stat"><div class="stat-label">'+x[0]+'</div><div class="stat-value">'+x[1]+'</div><div class="stat-foot">'+x[2]+'</div></div>').join('');
+  }catch(e){
+   if(currentPage==='dashboard'&&root.isConnected){$('dashboardStats').innerHTML='<div class="panel"><div class="empty">Statistik belum berhasil dimuat: '+esc(e.message||'Terjadi kesalahan.')+' <button class="btn btn-light" id="retryDashboardStats" type="button">Coba lagi</button></div></div>';$('retryDashboardStats').onclick=()=>renderPage('dashboard');}
+  }
+ })();
+ let targetsRequest=0;
+ async function loadTargets(){
+  const requestId=++targetsRequest,button=$('reloadAttendanceTargets'),state=$('attendanceTargetsState');
+  if(!button||!state||currentPage!=='dashboard')return;
+  button.disabled=true;button.textContent='Memuat target…';state.innerHTML='<div class="empty">Sedang memuat target absensi…</div>';
+  try{
+   const targets=await call('apiGetAttendanceTargets',token);
+   if(currentPage!=='dashboard'||requestId!==targetsRequest)return;
+   state.outerHTML='<div id="attendanceTargetsState"><div class="grid">'+[['Pertemuan tertinggal',targets.totalOccurrences],['Absensi belum masuk',targets.totalMissing]].map(x=>'<div class="stat"><div class="stat-label">'+x[0]+'</div><div class="stat-value">'+x[1]+'</div></div>').join('')+'</div>'+
+   (targets.activities.length?targets.activities.map(a=>'<div class="panel"><h3>'+esc(a.activityName)+'</h3><p class="muted small">'+esc(a.schedule||'Jadwal belum diatur')+'</p>'+a.occurrences.map(o=>'<div style="border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0"><b>'+esc(o.weekday)+' · '+esc(o.date)+'</b><div class="small muted" style="margin:5px 0">Belum ada catatan absensi pada tanggal ini</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:9px"><button class="btn btn-primary target-input" data-id="'+esc(a.activityId)+'" data-date="'+esc(o.date)+'">Input Absensi</button><button class="btn btn-light target-exception" data-id="'+esc(a.activityId)+'" data-date="'+esc(o.date)+'" data-status="holiday">Tandai Libur</button></div></div>').join('')+'</div>').join(''):'<div class="empty">Tidak ada target absensi tertinggal. Target muncul sesuai jadwal dan jika absensi belum lengkap.</div>')+'</div>';
+   const updatedState=$('attendanceTargetsState');
+   updatedState.querySelectorAll('.target-input').forEach(b=>b.onclick=()=>{window.gpsfmPendingAttendance={activityId:b.dataset.id,date:b.dataset.date};renderPage('attendance');});
+   updatedState.querySelectorAll('.target-exception').forEach(b=>b.onclick=async()=>{
+    const reason=await gpsfmPromptModal('Tandai Pertemuan Libur','Masukkan alasan mengapa pertemuan pada '+b.dataset.date+' ditetapkan sebagai libur.','Alasan libur','', 'text');if(reason===null)return;
+    busy(b,true,'Menyimpan...');
+    try{await call('apiSetOccurrenceException',token,b.dataset.id,b.dataset.date,'holiday',reason);toast('Pertemuan ditandai libur.');await loadTargets();}
+    catch(e){toast(e.message||'Pengecualian gagal disimpan.');}
+    finally{busy(b,false);}
+   });
+  }catch(e){
+   if(currentPage!=='dashboard'||requestId!==targetsRequest)return;
+   state.innerHTML='<div class="empty">Target absensi gagal dimuat: '+esc(e.message||'Terjadi kesalahan.')+'</div>';
+  }finally{
+   if(currentPage==='dashboard'&&requestId===targetsRequest){const btn=$('reloadAttendanceTargets');if(btn){btn.disabled=false;btn.textContent='↻ Reload Target Absensi';}}
+  }
+ }
+ const reloadTargetsButton=$('reloadAttendanceTargets');if(reloadTargetsButton)reloadTargetsButton.onclick=loadTargets;
+}
+async function attendancePage(root){
+ root.innerHTML=title('Input Absensi','Pilih kegiatan untuk memuat daftar guru, lalu tentukan tanggal absensi.')+
+ '<div class="panel"><form id="attendanceForm"><div class="row"><div class="field"><label>Kegiatan</label><select id="aActivity" required><option value="">Pilih kegiatan...</option></select></div><div class="field"><label>Tanggal</label><input id="aDate" type="date" value="'+dateDefault()+'" required></div></div></form></div>'+
+ '<div id="attendanceTeachers" class="panel"><div class="empty">Pilih kegiatan untuk memuat daftar guru dan catatan absensi.</div></div>';
+ async function loadTeachers(){
+   const box=$('attendanceTeachers');box.innerHTML='<div class="empty">Memuat daftar guru...</div>';
+   try{
+     const [teachers,existing]=await Promise.all([call('apiGetActivityTeachers',token,$('aActivity').value),call('apiGetAttendanceForDate',token,$('aActivity').value,$('aDate').value)]);
+     if(!teachers.length){box.innerHTML='<h3>Guru yang terlibat</h3><div class="empty">Belum ada guru yang ditetapkan untuk kegiatan ini. Hubungi superadmin agar mengatur daftar guru pada menu Kegiatan & PJ.</div>';return;}
+     const saved={};existing.forEach(x=>saved[x.teacherId]=x);
+     box.innerHTML='<h3>Daftar Guru Terlibat · '+teachers.length+' guru</h3><p class="muted small">Centang guru yang akan disimpan. Status dan catatan dapat diatur per guru. Rekap diperbarui dari catatan yang disimpan.</p>'+
+     '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0"><label class="checkitem" style="width:max-content"><input type="checkbox" id="selectAllAttendance"><span>Pilih semua guru</span></label><span class="muted small" id="attendanceSelectedCount">0 dipilih</span></div>'+
+     '<div class="field" style="margin:12px 0"><label for="attendanceTeacherSearch">Cari Guru</label><input id="attendanceTeacherSearch" type="search" placeholder="Ketik nama guru..." autocomplete="off"></div><div class="checklist" id="attendanceTeacherList">'+teachers.map(t=>{const old=saved[t.userId]||{};return '<div class="checkitem" style="align-items:flex-start;flex-wrap:wrap"><input type="checkbox" class="attendanceTeacherCheck" value="'+esc(t.userId)+'" '+(old.status?'checked':'')+' style="margin-top:4px"><div style="flex:1;min-width:140px"><b>'+esc(t.fullName)+'</b>'+(old.status?'<div class="small muted">Sudah ada catatan: '+esc(old.status)+'</div>':'<div class="small muted">Belum dicatat</div>')+'</div><div class="field" style="min-width:120px;flex:0 1 145px"><label>Status</label><select class="attendanceTeacherStatus" data-teacher="'+esc(t.userId)+'">'+(bootstrap.statuses||[]).map(s=>'<option '+(s===(old.status||'Hadir')?'selected':'')+'>'+esc(s)+'</option>').join('')+'</select></div><div class="field" style="min-width:150px;flex:1 1 180px"><label>Catatan (opsional)</label><input class="attendanceTeacherNote" data-teacher="'+esc(t.userId)+'" maxlength="300" value="'+esc(old.note||'')+'" placeholder="Catatan guru"></div></div>';}).join('')+'</div>'+
+     '<div style="margin-top:16px"><button id="saveAttendanceBatch" class="btn btn-primary" type="button">Simpan Absensi Terpilih</button></div>';
+     const checks=Array.from(box.querySelectorAll('.attendanceTeacherCheck'));
+     const search=$('attendanceTeacherSearch');
+     search.oninput=()=>{const q=search.value.trim().toLocaleLowerCase('id');box.querySelectorAll('#attendanceTeacherList .checkitem').forEach(row=>{const name=row.querySelector('b')?.textContent||'';row.style.display=name.toLocaleLowerCase('id').includes(q)?'flex':'none';});};
+     const updateCount=()=>{$('attendanceSelectedCount').textContent=checks.filter(x=>x.checked).length+' dipilih';$('selectAllAttendance').checked=checks.length>0&&checks.every(x=>x.checked);$('selectAllAttendance').indeterminate=checks.some(x=>x.checked)&&!checks.every(x=>x.checked);};
+     checks.forEach(x=>x.addEventListener('change',updateCount));
+     $('selectAllAttendance').onchange=()=>{checks.forEach(x=>x.checked=$('selectAllAttendance').checked);updateCount();};
+     updateCount();
+     $('saveAttendanceBatch').onclick=async()=>{
+       const selected=checks.filter(x=>x.checked);
+       if(!selected.length){toast('Centang minimal satu guru yang akan disimpan.');return;}
+       const entries=selected.map(x=>({teacherId:x.value,status:box.querySelector('.attendanceTeacherStatus[data-teacher="'+x.value+'"]').value,note:box.querySelector('.attendanceTeacherNote[data-teacher="'+x.value+'"]').value}));
+        const willDelete=checks.filter(x=>!x.checked && !!saved[x.value]).length;
+        if(willDelete>0 && !window.confirm('Ada '+willDelete+' catatan absensi lama yang akan dihapus karena guru tidak dicentang. Lanjutkan penyimpanan dan penghapusan tersebut?'))return;
+       const btn=$('saveAttendanceBatch');busy(btn,true,'Menyimpan '+selected.length+' guru...');
+       processNotice('Menyimpan absensi','Mengirim '+selected.length+' catatan guru. Mohon jangan tutup aplikasi…','working');
+       try{const result=await call('apiSaveAttendanceBatch',token,{activityId:$('aActivity').value,attendanceDate:$('aDate').value,entries:entries});processNotice('Absensi berhasil disimpan',result.saved+' catatan guru berhasil diproses.','success');await loadTeachers();}
+       catch(err){processNotice('Penyimpanan absensi gagal','Permintaan untuk '+selected.length+' guru tidak berhasil dikonfirmasi. Pesan sistem: '+(err.message||'Kesalahan tidak diketahui')+'. Periksa kembali data sebelum mencoba ulang.','error');}
+       finally{busy(btn,false);}
+     };
+   }catch(err){box.innerHTML='<h3>Daftar guru</h3><p class="muted">'+esc(err.message)+'</p><button class="btn btn-light" id="retryAttendanceTeachers">Coba lagi</button>';$('retryAttendanceTeachers').onclick=loadTeachers;}
+ }
+ let activityOptionsLoaded=false,activityOptionsLoading=false;
+ async function loadActivityOptions(){
+  if(activityOptionsLoaded||activityOptionsLoading)return;
+  activityOptionsLoading=true;const select=$('aActivity');select.disabled=true;
+  try{
+   const loaded=await call('apiListActivities',token);
+   if(currentPage!=='attendance')return;
+   activities=loaded||[];
+   if(!activities.length){select.innerHTML='<option value="">Tidak ada kegiatan tersedia</option>';$('attendanceTeachers').innerHTML='<div class="empty">Belum ada kegiatan yang tersedia untuk akun ini. Hubungi superadmin untuk penugasan PJ.</div>';activityOptionsLoaded=true;return;}
+   select.innerHTML='<option value="">Pilih kegiatan...</option>'+activities.map(a=>'<option value="'+esc(a.activityId)+'">'+esc(a.name)+'</option>').join('');
+   if(window.gpsfmPendingAttendance){const pending=window.gpsfmPendingAttendance;$('aDate').value=pending.date;window.gpsfmPendingAttendance=null;}
+   // Muat pilihan kegiatan lebih dahulu, tetapi jangan memilih kegiatan otomatis.
+   activityOptionsLoaded=true;
+  }catch(err){$('attendanceTeachers').innerHTML='<div class="empty">'+esc(err.message||'Daftar kegiatan gagal dimuat.')+'</div>';}
+  finally{activityOptionsLoading=false;select.disabled=false;}
+ }
+ $('aActivity').onchange=()=>{if($('aActivity').value)loadTeachers();else $('attendanceTeachers').innerHTML='<div class="empty">Pilih kegiatan untuk memuat daftar guru dan catatan absensi.</div>';};
+ $('aDate').onchange=()=>{if($('aActivity').value)loadTeachers();};
+ // Daftar kegiatan tersedia sejak halaman dibuka; data guru/absensi tetap menunggu pilihan kegiatan.
+ loadActivityOptions();
+}
+
+async function activityReportPage(root){
+ const options=(bootstrap.activities||[]).map(a=>'<option value="'+esc(a.activityId)+'">'+esc(a.name)+'</option>').join('');
+ const now=new Date();
+ root.innerHTML=title('Laporan Kegiatan','Rekap absensi per kegiatan dan bulan. Hanya guru yang terlibat ditampilkan sesuai urutan data Users.')+
+ '<div class="panel"><div class="row"><div class="field"><label for="activityReportSelect">Pilih Kegiatan</label><select id="activityReportSelect"><option value="">Pilih kegiatan...</option>'+options+'</select></div><div class="field"><label for="activityReportMonth">Bulan</label><select id="activityReportMonth">'+['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'].map((m,i)=>'<option value="'+(i+1)+'" '+(i===now.getMonth()?'selected':'')+'>'+m+'</option>').join('')+'</select></div><div class="field"><label for="activityReportYear">Tahun</label><select id="activityReportYear">'+Array.from({length:7},(_,i)=>now.getFullYear()-3+i).map(y=>'<option '+(y===now.getFullYear()?'selected':'')+'>'+y+'</option>').join('')+'</select></div></div><div id="activityReportResult" style="margin-top:14px"><div class="empty">Pilih kegiatan untuk menampilkan laporan.</div></div></div>';
+ const sel=$('activityReportSelect'), month=$('activityReportMonth'), year=$('activityReportYear'), out=$('activityReportResult');
+ async function load(){
+  if(!sel.value){out.innerHTML='<div class="empty">Pilih kegiatan untuk menampilkan laporan.</div>';return;}
+  out.innerHTML='<div class="empty">Memuat laporan kegiatan...</div>';
+  try{
+   const data=await call('apiGetActivityReport',token,sel.value), prefix=String(year.value)+'-'+String(month.value).padStart(2,'0');
+   const dates=data.dates.filter(d=>d.slice(0,7)===prefix);
+   if(!data.teachers.length){out.innerHTML='<div class="empty">Belum ada guru yang ditetapkan untuk kegiatan ini.</div>';return;}
+   if(!dates.length){out.innerHTML='<div class="empty">Belum ada absensi pada bulan yang dipilih.</div>';return;}
+   const dateIndex={};data.dates.forEach((d,i)=>dateIndex[d]=i);
+   out.innerHTML='<h3>'+esc(data.activityName)+' · '+esc(month.options[month.selectedIndex].text)+' '+esc(year.value)+'</h3><p class="muted small">Baris guru mengikuti urutan sheet Users. Kolom hanya menampilkan tanggal dengan absensi pada bulan yang dipilih.</p><div class="table-wrap"><table><thead><tr><th>Nama Guru</th>'+dates.map(d=>'<th>'+esc(d)+'</th>').join('')+'</tr></thead><tbody>'+data.teachers.map(t=>'<tr><td><b>'+esc(t.fullName)+'</b></td>'+dates.map(d=>{const i=dateIndex[d];return '<td>'+esc(i===undefined?'—':(t.statuses[i]||'—'))+'</td>';}).join('')+'</tr>').join('')+'</tbody></table></div>';
+  }catch(e){out.innerHTML='<div class="empty">'+esc(e.message||'Laporan tidak dapat dimuat.')+'</div>';}
+ }
+ sel.onchange=load;month.onchange=load;year.onchange=load;
+}
+async function reportPage(root){
+ const now=new Date();
+ root.innerHTML=title(me.role==='supervisor'?'Rekapan Absensi':'Evaluasi Diri',me.role==='supervisor'?'Lihat laporan absensi seluruh guru dan seluruh kegiatan. Tampilan hanya-baca.':me.role==='superadmin'?'Lihat rekap seluruh guru, lalu filter berdasarkan periode dan kegiatan.':'Lihat catatan rekap kehadiran Anda sendiri, lalu filter berdasarkan periode dan kegiatan.')+
+ '<div class="panel"><form id="reportForm" class="row">'+
+ '<div class="field"><label>Tahun</label><input id="rYear" type="number" value="'+now.getFullYear()+'" readonly aria-readonly="true"></div>'+
+ '<div class="field"><label>Bulan</label><select id="rMonth">'+['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'].map((m,i)=>'<option value="'+(i+1)+'" '+(i===now.getMonth()?'selected':'')+'>'+m+'</option>').join('')+'</select></div>'+
+ '<div class="field"><label>Kegiatan</label><select id="rActivity"><option value="">'+(me.role==='supervisor'?'Semua kegiatan':'Pilih kegiatan...')+'</option></select></div>'+
+ '<button class="btn btn-primary" type="submit" style="flex:1;min-width:180px">Tampilkan Rekap</button></form></div><div id="reportResult"></div>';
+
+ function filteredRows(){
+  if(!report)return [];
+  const activityId=$('rActivity').value;
+  return report.rows.filter(x=>!activityId||String(x.activityId)===activityId);
+ }
+ function normalizeAttendanceStatus(value){
+  const status=String(value||'').trim().replace(/^[A-D][.]\s*/i,'').toLowerCase().replace(/\s+/g,' ');
+  if(status==='hadir')return 'Hadir';
+  if(status==='sakit')return 'Sakit';
+  if(status==='tugas'||status==='tugas pondok')return 'Tugas Pondok';
+  if(status==='izin'||status==='izin pribadi')return 'Izin Pribadi';
+  if(status==='alpa'||status==='alfa')return 'Alfa';
+  return '';
+ }
+ function renderResults(){
+  const rows=filteredRows(), summary={Hadir:0,Sakit:0,TugasPondok:0,IzinPribadi:0,Alfa:0};
+  // Hitung menggunakan label status absensi terkini maupun data lama.
+  rows.forEach(x=>{const key=normalizeAttendanceStatus(x.status);if(key)summary[key==='Tugas Pondok'?'TugasPondok':key==='Izin Pribadi'?'IzinPribadi':key]++;});
+  const activityLabel=$('rActivity').value?$('rActivity').selectedOptions[0].text:'Semua kegiatan yang tersedia';
+  $('reportResult').innerHTML=
+   '<div class="grid" style="margin-top:14px">'+
+   [['Total catatan',rows.length],['Hadir',summary.Hadir],['Sakit',summary.Sakit],['Tugas Pondok',summary.TugasPondok],['Izin Pribadi',summary.IzinPribadi],['Alfa',summary.Alfa]].map(x=>'<div class="stat"><div class="stat-label">'+x[0]+'</div><div class="stat-value">'+x[1]+'</div><div class="stat-foot">Sesuai filter kegiatan</div></div>').join('')+
+   '</div><div class="panel"><h3>Detail absensi · '+esc($('rMonth').selectedOptions[0].text)+' '+esc($('rYear').value)+'</h3><p class="muted small">Kegiatan: '+esc(activityLabel)+' · '+rows.length+' catatan</p>'+
+   (rows.length?'<div class="table-wrap"><table id="reportTable"><thead><tr><th>Tanggal</th><th>Nama Guru</th><th>Kegiatan</th><th>Status</th><th>Catatan</th></tr></thead><tbody>'+
+   rows.slice().sort((a,b)=>a.date.localeCompare(b.date)||a.activityName.localeCompare(b.activityName)||a.teacherName.localeCompare(b.teacherName)).map(x=>'<tr><td>'+esc(x.date)+'</td><td>'+esc(x.teacherName)+'</td><td>'+esc(x.activityName)+'</td><td><span class="pill '+esc(x.status)+'">'+esc(x.status)+'</span></td><td>'+esc(x.note||'—')+'</td></tr>').join('')+
+   '</tbody></table></div>':'<div class="empty">Belum ada catatan kehadiran untuk periode dan kegiatan yang dipilih.</div>')+'</div>';
+ }
+ let reportActivitiesLoaded=false,reportActivitiesLoading=false,reportDataLoading=false;
+ function showReportLoadingNotice(message){
+  processNotice('Memuat data Evaluasi Diri',message,'working');
+  const pop=$('gpsProcessPop');
+  if(pop){pop.style.top='calc(12px + env(safe-area-inset-top))';pop.style.left='50%';pop.style.transform='translateX(-50%)';}
+ }
+ function hideReportLoadingNotice(){if(currentPage==='report')closeProcessNotice();}
+ async function loadActivityOptions(){
+  if(reportActivitiesLoaded||reportActivitiesLoading)return;
+  reportActivitiesLoading=true;$('rActivity').disabled=true;
+  showReportLoadingNotice('Mengambil daftar kegiatan yang tersedia untuk akun Anda…');
+  try{
+   const list=await call('apiListMyAttendanceActivities',token);
+   if(currentPage!=='report')return;
+   $('rActivity').innerHTML='<option value="">Pilih kegiatan...</option>'+((list||[]).map(a=>'<option value="'+esc(a.activityId)+'">'+esc(a.name)+'</option>')).join('');
+   reportActivitiesLoaded=true;
+   if(!(list||[]).length)$('reportResult').innerHTML='<div class="panel empty">Belum ada kegiatan yang tersedia untuk akun ini.</div>';
+  }catch(err){toast(err.message||'Daftar kegiatan gagal dimuat.');}
+  finally{reportActivitiesLoading=false;$('rActivity').disabled=false;hideReportLoadingNotice();}
+ }
+ async function load(){
+  const activityId=$('rActivity').value;
+  if(!activityId&&me.role!=='supervisor'){report=null;$('reportResult').innerHTML='<div class="panel empty">Pilih kegiatan untuk memuat rekap evaluasi diri.</div>';return;}
+  if(reportDataLoading)return;
+  reportDataLoading=true;
+  const y=Number($('rYear').value),m=Number($('rMonth').value);
+  showReportLoadingNotice('Mengambil catatan absensi sesuai bulan dan kegiatan yang dipilih…');
+  try{report=await call('apiGetMonthlyReport',token,y,m);if(currentPage!=='report')return;renderResults();}
+  catch(err){report=null;$('reportResult').innerHTML='<div class="panel empty">'+esc(err.message||'Rekap tidak dapat dimuat.')+'</div>';throw err;}
+  finally{reportDataLoading=false;hideReportLoadingNotice();}
+ }
+ $('rActivity').onchange=()=>{if($('rActivity').value)load();else{report=null;$('reportResult').innerHTML='<div class="panel empty">Pilih kegiatan untuk memuat rekap evaluasi diri.</div>';}};
+ $('reportForm').onsubmit=async e=>{e.preventDefault();try{await load();}catch(err){toast(err.message);}};
+ $('reportResult').innerHTML='<div class="panel empty">'+(me.role==='supervisor'?'Pilih periode untuk memuat seluruh rekap absensi.':'Pilih kegiatan untuk memuat rekap evaluasi diri.')+'</div>';
+ // Muat pilihan kegiatan saat halaman dibuka. Supervisor dapat meminta laporan seluruh kegiatan.
+ loadActivityOptions().then(()=>{if(me.role==='supervisor'&&currentPage==='report')load();});
+}
+const GPSFM_DAYS=['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
+function activityScheduleParts(value){
+ const raw=String(value||'').trim();
+ if(!raw)return {days:[],time:''};
+ const normalized=raw.toLowerCase().replace(/[–—]/g,'-');
+ let days=[];
+ if(normalized.includes('setiap hari'))days=[...GPSFM_DAYS];
+ else if(normalized.includes('senin-jumat'))days=['Senin','Selasa','Rabu','Kamis','Jumat'];
+ else days=GPSFM_DAYS.filter(d=>new RegExp('(^|[^a-z])'+d+'([^a-z]|$)','i').test(raw));
+ const time=raw.replace(/setiap\s+hari/ig,'').replace(/senin\s*[–—-]\s*jumat/ig,'').replace(/senin|selasa|rabu|kamis|jumat|sabtu|minggu/ig,'').replace(/[\s,;·|–—-]+/g,' ').trim();
+ return {days:[...new Set(days)],time};
+}
+function selectedActivityDays(){return Array.from(document.querySelectorAll('input[name="activityDay"]:checked')).map(x=>x.value);}
+function setActivityDays(days){document.querySelectorAll('input[name="activityDay"]').forEach(x=>{x.checked=days.includes(x.value);});}
+async function activitiesPage(root){
+ const dayChoices=GPSFM_DAYS.map(d=>'<label class="checkitem"><input type="checkbox" name="activityDay" value="'+d+'"><span>'+d+'</span></label>').join('');
+ root.innerHTML=title('Kegiatan & PJ','Kelola daftar kegiatan dan penugasan penanggung jawab.')+'<div class="panel"><h3>Tambah / ubah kegiatan</h3><p class="muted small">Formulir disiapkan. Data kegiatan dan penanggung jawab sedang dimuat…</p><form id="activityForm"><input type="hidden" id="activityId"><div class="field"><label>Nama kegiatan</label><input id="activityName" required maxlength="120" placeholder="Contoh: Tahfiz pagi"></div><div class="field" style="margin-top:12px"><label>Hari kegiatan</label><div class="checklist" style="grid-template-columns:repeat(auto-fit,minmax(105px,1fr))">'+dayChoices+'</div></div><div class="field" style="margin-top:12px"><label>Waktu / keterangan jadwal (opsional)</label><input id="activityScheduleTime" maxlength="120" placeholder="Contoh: 07.00 atau setelah Subuh"></div><div class="field" style="margin-top:12px"><label>Deskripsi (opsional)</label><input id="activityDescription" maxlength="500" placeholder="Keterangan kegiatan"></div></form></div><div class="panel"><h3>Daftar kegiatan</h3><div class="empty">Memuat daftar kegiatan…</div></div>';
+ const [loadedActivities,loadedUsers]=await Promise.all([call('apiListActivities',token),call('apiListUsers',token)]);if(currentPage!=='activities')return;activities=loadedActivities;users=loadedUsers;
+
+ root.innerHTML=title('Kegiatan & PJ','Kelola daftar kegiatan dan penugasan penanggung jawab.')+
+ '<div class="panel"><h3>Tambah / ubah kegiatan</h3><form id="activityForm"><input type="hidden" id="activityId">'+
+ '<div class="field"><label>Nama kegiatan</label><input id="activityName" required maxlength="120" placeholder="Contoh: Tahfiz pagi"></div>'+
+ '<div class="field" style="margin-top:12px"><label>Hari kegiatan</label><div class="checklist" style="grid-template-columns:repeat(auto-fit,minmax(105px,1fr))">'+dayChoices+'</div></div>'+
+ '<div class="field" style="margin-top:12px"><label>Waktu / keterangan jadwal (opsional)</label><input id="activityScheduleTime" maxlength="120" placeholder="Contoh: 07.00 atau setelah Subuh"></div>'+
+ '<div class="field" style="margin-top:12px"><label>Deskripsi (opsional)</label><input id="activityDescription" maxlength="500" placeholder="Keterangan kegiatan"></div>'+
+ '<div style="margin-top:14px"><button class="btn btn-primary" id="saveActivity" type="submit">Simpan Kegiatan</button> <button class="btn btn-light" type="button" id="resetActivity">Kosongkan</button></div></form></div>'+
+ '<div class="panel"><h3>Daftar kegiatan</h3>'+(activities.length?'<div class="table-wrap"><table><thead><tr><th>Kegiatan</th><th>Jadwal</th><th>PJ</th><th>Guru Terlibat</th><th>Aksi</th></tr></thead><tbody>'+activities.map(a=>'<tr><td><b>'+esc(a.name)+'</b><div class="small muted">'+esc(a.description)+'</div></td><td>'+esc(a.schedule||'—')+'</td><td><button class="btn btn-light assignBtn" data-id="'+esc(a.activityId)+'" data-name="'+esc(a.name)+'">Atur PJ</button></td><td><button class="btn btn-light teacherAssignBtn" data-id="'+esc(a.activityId)+'" data-name="'+esc(a.name)+'">Atur Guru</button></td><td><button class="btn btn-light editAct" data-id="'+esc(a.activityId)+'">Edit</button></td></tr>').join('')+'</tbody></table></div>':'<div class="empty">Belum ada kegiatan.</div>')+'</div><div id="assignPanel"></div><div id="teacherAssignPanel"></div>';
+ $('resetActivity').onclick=()=>{$('activityId').value='';$('activityName').value='';$('activityScheduleTime').value='';$('activityDescription').value='';setActivityDays([]);};
+ $('activityForm').onsubmit=async e=>{e.preventDefault();const days=selectedActivityDays();if(!days.length){toast('Pilih minimal satu hari kegiatan.');return;}const b=$('saveActivity');busy(b,true,'Menyimpan...');try{const time=$('activityScheduleTime').value.trim();const schedule=days.join(', ')+(time?' · '+time:'');await call('apiSaveActivity',token,{activityId:$('activityId').value,name:$('activityName').value,schedule,description:$('activityDescription').value});toast('Kegiatan tersimpan.');await activitiesPage(root);}catch(err){toast(err.message);}finally{busy(b,false);}};
+ root.querySelectorAll('.editAct').forEach(b=>b.onclick=()=>{const a=activities.find(x=>x.activityId===b.dataset.id);if(!a)return;const parts=activityScheduleParts(a.schedule);$('activityId').value=a.activityId;$('activityName').value=a.name;$('activityScheduleTime').value=parts.time;$('activityDescription').value=a.description;setActivityDays(parts.days);window.scrollTo({top:0,behavior:'smooth'});});
+ root.querySelectorAll('.assignBtn').forEach(b=>b.onclick=()=>showAssignments(b.dataset.id,b.dataset.name));
+ root.querySelectorAll('.teacherAssignBtn').forEach(b=>b.onclick=()=>showActivityTeachers(b.dataset.id,b.dataset.name));
+}
+async function showAssignments(id,name){const panel=$('assignPanel');panel.innerHTML='<div class="panel">Memuat penugasan...</div>';try{const [assigned,allUsers]=await Promise.all([call('apiGetPJAssignments',token,id),call('apiListUsers',token)]);const activeUsers=allUsers.filter(u=>u.active&&u.role==='gps');const set=new Set(assigned.map(a=>a.userId));panel.innerHTML='<div class="panel"><h3>Penanggung jawab · '+esc(name)+'</h3><p class="muted small">Pilih guru GPS yang bertugas sebagai PJ. Perubahan berlaku saat disimpan.</p><form id="pjForm"><div class="checklist">'+activeUsers.map(u=>'<label class="checkitem"><input type="checkbox" value="'+esc(u.userId)+'" '+(set.has(u.userId)?'checked':'')+'><span>'+esc(u.fullName)+'</span></label>').join('')+'</div><div style="margin-top:14px"><button class="btn btn-primary" type="submit">Simpan Penugasan</button></div></form></div>';panel.scrollIntoView({behavior:'smooth',block:'start'});$('pjForm').onsubmit=async e=>{e.preventDefault();const selected=Array.from($('pjForm').querySelectorAll('input:checked')).map(x=>x.value);const btn=$('pjForm').querySelector('button[type="submit"]');busy(btn,true,'Menyimpan...');processNotice('Menyimpan penugasan PJ','Menyiapkan perubahan penanggung jawab…','working');let done=0;const failures=[];try{for(const u of activeUsers)if(set.has(u.userId)!==selected.includes(u.userId)){try{await call('apiAssignPJ',token,id,u.userId,selected.includes(u.userId));done++;processNotice('Menyimpan penugasan PJ','Berhasil memproses '+done+' perubahan.','working');}catch(err){failures.push(u.fullName+': '+err.message);}}if(failures.length)processNotice('Sebagian penugasan gagal','Berhasil: '+done+' perubahan. Gagal:\n'+failures.join('\n'),'error');else{processNotice('Penugasan PJ tersimpan','Berhasil memproses '+done+' perubahan.','success');await showAssignments(id,name);}}catch(err){processNotice('Penugasan PJ gagal',err.message||'Terjadi kesalahan.','error');}finally{busy(btn,false);}};}catch(e){panel.innerHTML='<div class="panel">'+esc(e.message)+'</div>';}}
+async function showActivityTeachers(id,name){
+ const panel=$('teacherAssignPanel');panel.innerHTML='<div class="panel">Memuat daftar guru...</div>';
+ try{
+   const [assigned,allUsers]=await Promise.all([call('apiGetActivityTeachers',token,id),call('apiListUsers',token)]);
+   const activeUsers=allUsers.filter(u=>u.active&&u.role==='gps'),set=new Set(assigned.map(a=>a.userId));
+   panel.innerHTML='<div class="panel"><h3>Guru yang Terlibat · '+esc(name)+'</h3><p class="muted small">Pilih guru yang benar-benar terlibat. Gunakan Pilih Semua jika seluruh guru mengikuti kegiatan ini.</p><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0"><button class="btn btn-light" type="button" id="selectAllActivityTeachers">Pilih Semua</button><span class="small muted" id="activityTeacherCount">'+set.size+' dari '+activeUsers.length+' guru dipilih</span></div><form id="activityTeachersForm"><div class="checklist">'+activeUsers.map(u=>'<label class="checkitem"><input type="checkbox" class="activityTeacherChoice" value="'+esc(u.userId)+'" '+(set.has(u.userId)?'checked':'')+'><span>'+esc(u.fullName)+'</span></label>').join('')+'</div><div style="margin-top:14px"><button class="btn btn-primary" id="saveActivityTeachers" type="submit">Simpan Guru Terlibat</button></div></form></div>';
+   panel.scrollIntoView({behavior:'smooth',block:'start'});
+   const teacherChecks=Array.from(panel.querySelectorAll('.activityTeacherChoice'));
+   const updateTeacherCount=()=>{$('activityTeacherCount').textContent=teacherChecks.filter(x=>x.checked).length+' dari '+teacherChecks.length+' guru dipilih';$('selectAllActivityTeachers').textContent=teacherChecks.length&&teacherChecks.every(x=>x.checked)?'Batalkan Pilih Semua':'Pilih Semua';};
+   $('selectAllActivityTeachers').onclick=()=>{const select=!(teacherChecks.length&&teacherChecks.every(x=>x.checked));teacherChecks.forEach(x=>x.checked=select);updateTeacherCount();};
+   teacherChecks.forEach(x=>x.addEventListener('change',updateTeacherCount));
+   $('activityTeachersForm').onsubmit=async e=>{e.preventDefault();const selected=teacherChecks.filter(x=>x.checked).map(x=>x.value);const btn=$('saveActivityTeachers');busy(btn,true,'Menyimpan...');processNotice('Menyimpan guru kegiatan','Menyiapkan perubahan penugasan…','working');let done=0;const failures=[];try{for(const u of activeUsers){if(set.has(u.userId)!==selected.includes(u.userId)){try{await call('apiAssignActivityTeacher',token,id,u.userId,selected.includes(u.userId));done++;processNotice('Menyimpan guru kegiatan','Berhasil memproses '+done+' perubahan.','working');}catch(err){failures.push(u.fullName+': '+err.message);}}}if(failures.length){processNotice('Sebagian perubahan gagal','Berhasil: '+done+' perubahan. Gagal:\n'+failures.join('\n'),'error');}else{processNotice('Guru kegiatan tersimpan','Berhasil memproses '+done+' perubahan.','success');await showActivityTeachers(id,name);}}catch(err){processNotice('Penyimpanan guru gagal',err.message||'Terjadi kesalahan.','error');}finally{busy(btn,false);}};
+ }catch(e){panel.innerHTML='<div class="panel">'+esc(e.message)+'</div>';}
+}
+async function usersPage(root){users=await call('apiListUsers',token);root.innerHTML=title('Akun Guru GPS','Kelola akun dan akses aplikasi.')+'<div class="panel"><h3>Buat akun guru</h3><form id="userForm"><div class="row"><div class="field"><label>Nama lengkap</label><input id="uName" maxlength="120" required></div><div class="field"><label>Username</label><input id="uUsername" maxlength="50" autocomplete="off" required></div></div><div class="row" style="margin-top:12px"><div class="field"><label>Password awal (minimal 6 karakter)</label><input id="uPassword" type="password" minlength="6" required autocomplete="new-password"></div><div class="field"><label>Role</label><select id="uRole"><option value="gps">Guru GPS</option><option value="supervisor">Supervisor GPS (baca saja)</option><option value="superadmin">Superadmin</option></select></div></div><div style="margin-top:14px"><button class="btn btn-primary" id="saveUser">Buat Akun</button></div></form></div><div class="panel"><h3>Daftar akun</h3><div class="table-wrap"><table><thead><tr><th>Nama</th><th>Username</th><th>Role</th><th>Status</th><th>Aksi</th></tr></thead><tbody>'+users.map(u=>'<tr><td><b>'+esc(u.fullName)+'</b></td><td>'+esc(u.username)+'</td><td>'+esc(u.role)+'</td><td><span class="pill">'+(u.active?'Aktif':'Nonaktif')+'</span></td><td><button class="btn btn-light resetPass" data-id="'+esc(u.userId)+'" data-name="'+esc(u.fullName)+'">Reset Password</button></td></tr>').join('')+'</tbody></table></div></div>';$('userForm').onsubmit=async e=>{e.preventDefault();const b=$('saveUser');busy(b,true,'Membuat akun...');try{await call('apiSaveUser',token,{fullName:$('uName').value,username:$('uUsername').value,password:$('uPassword').value,role:$('uRole').value});toast('Akun berhasil dibuat.');await usersPage(root);}catch(err){toast(err.message);}finally{busy(b,false);}};root.querySelectorAll('.resetPass').forEach(b=>b.onclick=async()=>{const p=await gpsfmPromptModal('Reset Password','Tentukan password baru untuk '+b.dataset.name+'. Password minimal 6 karakter.','Password baru','','password');if(p===null)return;if(p.length<6){toast('Password baru minimal 6 karakter.');return;}try{await call('apiSetUserPassword',token,b.dataset.id,p);toast('Password berhasil direset.');}catch(e){toast(e.message);}});}
+const rememberEnabled=gpsfmStorageGet(localStorage,'gpsfm_remember')==='1';const remembered=rememberEnabled?gpsfmStorageGet(localStorage,'gpsfm_token'):'';const saved=remembered||gpsfmStorageGet(sessionStorage,'gpsfm_token');$('rememberMe').checked=!!remembered;if(saved){token=saved;processNotice('Memulihkan sesi','Memeriksa sesi login tersimpan…','working');startApp().then(()=>{processNotice('Sesi berhasil dipulihkan','Anda berhasil masuk kembali menggunakan sesi tersimpan.','success');const pop=$('gpsProcessPop');if(pop){pop.style.top='calc(12px + env(safe-area-inset-top))';pop.style.left='50%';pop.style.transform='translateX(-50%)';}}).catch(()=>{token='';me=null;bootstrap=null;gpsfmStorageRemove(sessionStorage,'gpsfm_token');gpsfmStorageRemove(localStorage,'gpsfm_token');gpsfmStorageRemove(localStorage,'gpsfm_remember');$('rememberMe').checked=false;showLogin();processNotice('Sesi tidak dapat dipulihkan','Silakan masuk kembali menggunakan username dan password Anda.','error');});}
+})();
+</script>
+</body>
+</html>
